@@ -3,6 +3,7 @@
      세로 길이<input type="number" :value="row" @change="ChangeRow" /> <!--지역변수를 바꿈 -->
     가로 길이<input type="number" :value="col" @change="ChangeCol" /> <!--지역변수를 바꿈 -->
     지뢰 개수<input type="number" :value="mine" @change="ChangeMine" /> <!--지역변수를 바꿈 -->
+    <button @click="ClickBtn">시작</button>
   </div>
 </template>
 
@@ -22,7 +23,7 @@
      ChangeRow(e) {
         this.row = e.target.value;
       },
-      ChangeCell(e) {
+      ChangeCol(e) {
         this.col = e.target.value;
       },
       ChangeMine(e) {
