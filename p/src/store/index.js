@@ -62,8 +62,10 @@ export default new Vuex.Store({
       col:0, //세로
       mine:0 //지뢰
     },
-    timer:0,
+    Timer:0,
     result:'',
+    //아직 게임 시작 안했으니 halted는 true
+    halted:true,
     
   },
   mutations: { //mutations 통해서 state에 접근
@@ -78,14 +80,17 @@ export default new Vuex.Store({
       // //Vue.set을 이용해서 객체 안에 속성이나 인덱스를 일치시켜준다
       // Vue.set(state.data,'row',row);
       state.tabledata = MinePlanting(row,col,mine)
-      state.timer=0;
+      state.Timer=0;
+      state.halted = false;
     },
     [OpenSpace](state){},
     [FlagSpace](state){},
     [MineSpace](state){},
     [QuestionSpace](state){},
     [NormalSpace](state){},
-    [Timer](state){},
+    [Timer](state){
+      state.Timer+=1;
+    },
   },
   actions: {
   },
