@@ -56,21 +56,21 @@ const MinePlanting = (row, col, mine) => {
 
 export default new Vuex.Store({
   state: {
-    tabledata:[],
-    data:{
-      row:0, //가로
-      col:0, //세로
-      mine:0 //지뢰
+    tabledata: [],
+    data: {
+      row: 0, //가로
+      col: 0, //세로
+      mine: 0 //지뢰
     },
-    Timer:0,
-    result:'',
+    Timer: 0,
+    result: '',
     //아직 게임 시작 안했으니 halted는 true
-    halted:true,
-    
+    halted: true,
+
   },
   mutations: { //mutations 통해서 state에 접근
-    
-    [GameStart](state,{row, col, mine}){
+
+    [GameStart](state, { row, col, mine }) {
       state.data = {
         row,
         col,
@@ -79,17 +79,41 @@ export default new Vuex.Store({
       // state.data.row=row;
       // //Vue.set을 이용해서 객체 안에 속성이나 인덱스를 일치시켜준다
       // Vue.set(state.data,'row',row);
-      state.tabledata = MinePlanting(row,col,mine)
-      state.Timer=0;
+      state.tabledata = MinePlanting(row, col, mine)
+      state.Timer = 0;
       state.halted = false;
     },
-    [OpenSpace](state){},
-    [FlagSpace](state){},
-    [MineSpace](state){},
-    [QuestionSpace](state){},
-    [NormalSpace](state){},
-    [Timer](state){
-      state.Timer+=1;
+    [OpenSpace](state, { row, col }) {
+      //vue.set을 사용
+      Vue.set(state.tabledata[row], col, CODE.Open);
+    },
+    [FlagSpace](state, { row, col }) {
+      if (state.tabledata[row][col] === CODE.Mine) {
+        Vue.set(state.tabledata[row], col, CODE.FlagOnMine);
+      }
+      else {
+        Vue.set(state.tabledata[row], col, CODE.Flag);
+      }
+    },
+    [MineSpace](state) {},
+    [QuestionSpace](state, { row, col }) {
+      if (state.tabledata[row][col] === CODE.FlagOnMine) {
+        Vue.set(state.tabledata[row], col, CODE.QuestionOnMine);
+      }
+      else {
+        Vue.set(state.tabledata[row], col, CODE.Question);
+      }
+    },
+    [NormalSpace](state, { row, col }) {
+      if (state.tabledata[row][col] === CODE.QuestionOnMine) {
+        Vue.set(state.tabledata[row], col, CODE.Mine);
+      }
+      else {
+        Vue.set(state.tabledata[row], col, CODE.Normal);
+      }
+    },
+    [Timer](state) {
+      state.Timer += 1;
     },
   },
   actions: {

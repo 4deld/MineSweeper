@@ -5,9 +5,10 @@
         v-for="(colData, colidx) in rowData"
         :key="colidx"
         :style="colDataStyle(rowidx, colidx)"
-        @click="onClickTd(rowidx, colidx)"
-        @contextmenu.prevent="onRightClickTd(rowidx, colidx)"
+        @click="ClickTd(rowidx, colidx)"
+        @contextmenu.prevent="RightClickTd(rowidx, colidx)" 
       >
+      <!-- contextmenu - 오른쪽 클릭 -->
               {{colDataText(rowidx,colidx)}}
           </td>
       </tr>
@@ -71,7 +72,7 @@ export default {
       },
     },
 methods: {
-      onClickTd(row, col) {
+      ClickTd(row, col) {
         if (this.halted) {
           return;
         }
@@ -84,7 +85,7 @@ methods: {
             return;
         }
       },
-      onRightClickTd(row, col) {
+      RightClickTd(row, col) {
         if (this.halted) {
           return;
         }
