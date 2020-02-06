@@ -76,6 +76,7 @@ methods: {
         if (this.halted) {
           return;
         }
+        //지뢰 밟기와 일반 칸 밟기 나눔
         switch (this.tabledata[row][col]) {
           case CODE.Normal:
             return this.$store.commit(OpenSpace, { row, col });

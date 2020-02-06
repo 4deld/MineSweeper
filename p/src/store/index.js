@@ -85,6 +85,7 @@ export default new Vuex.Store({
     },
     [OpenSpace](state, { row, col }) {
       //vue.set을 사용
+      
       Vue.set(state.tabledata[row], col, CODE.Open);
     },
     [FlagSpace](state, { row, col }) {
@@ -95,7 +96,10 @@ export default new Vuex.Store({
         Vue.set(state.tabledata[row], col, CODE.Flag);
       }
     },
-    [MineSpace](state) {},
+    [MineSpace](state,{row,col}) {
+      state.halted = true;
+      Vue.set(state.tabledata[row],col,CODE.ClickMine)
+    },
     [QuestionSpace](state, { row, col }) {
       if (state.tabledata[row][col] === CODE.FlagOnMine) {
         Vue.set(state.tabledata[row], col, CODE.QuestionOnMine);

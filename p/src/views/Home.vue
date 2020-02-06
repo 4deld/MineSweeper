@@ -10,15 +10,15 @@
 <script>
 //mapState 사용
 import { mapState } from 'vuex';
- import store, { Timer } from '../store/index';
-  import Table from '../components/Table';
+import store, { Timer } from '../store/index';
+import Table from '../components/Table';
 import MineForm from '../components/MineForm';
 let interval;
 export default {
   store,
   components:{
     Table,
-    MineForm
+    MineForm, 
   },
   computed: {
     //mapped computed 속성의 이름이 상태 하위 트리이름과 동일할 
@@ -29,7 +29,7 @@ export default {
       halted(value, oldvalue){
         //게임시작
         if(value===false){
-          setInterval(()=>{
+          interval = setInterval(() => {
             this.$store.commit(Timer);
           },1000)
         }
