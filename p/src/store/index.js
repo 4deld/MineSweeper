@@ -84,9 +84,73 @@ export default new Vuex.Store({
       state.halted = false;
     },
     [OpenSpace](state, { row, col }) {
-      //vue.set을 사용
-      
-      Vue.set(state.tabledata[row], col, CODE.Open);
+      let opencount = 0;
+      const ck = []; //방문했는지 체크
+      function checkAround(row, col) { // 주변 8칸 지뢰인지 검색
+        const ckRowOrcolIsUndefined = row < 0 || row >= state.tabledata.length || col < 0 || col >= state.tabledata[0].length;
+        if (ckRowOrcolIsUndefined) {
+          return; //언디파인드 거름
+        }
+        if ([CODE.Open, CODE.Flag, CODE.FlagOnMine, CODE.QuestionOnMine, CODE.Question, CODE.Mine].includes(state.tabledata[row][col])) {
+          return; //열린칸, 깃발, 물음표, 지뢰 거름
+        }
+        if (ck.includes(row + '/' + col)) { //방문한 칸 기록해줌
+          return;
+        } else {
+          ck.push(row + '/' + col);
+        }
+        let around = [];
+        if (state.tabledata[row - 1]) {
+          around = around.concat([
+            state.tabledata[row - 1][col - 1], state.tabledata[row - 1][col], state.tabledata[row - 1][col + 1]
+          ]);
+        }
+        around = around.concat([
+          state.tabledata[row][col - 1], state.tabledata[row][col + 1]
+        ]);
+        if (state.tabledata[row + 1]) {
+          around = around.concat([
+            state.tabledata[row + 1][col - 1], state.tabledata[row + 1][col], state.tabledata[row + 1][col + 1]
+          ]);
+        }
+        const counted = around.filter(function(v) {
+          return [CODE.Mine, CODE.FlagOnMine, CODE.QuestionOnMine].includes(v);
+        });
+        if (counted.length === 0 && row > -1) { // 주변칸에 지뢰가 하나도 없으면
+          const near = [];
+          if (row - 1 > -1) {
+            near.push([row - 1, col - 1]);
+            near.push([row - 1, col]);
+            near.push([row - 1, col + 1]);
+          }
+          near.push([row, col - 1]);
+          near.push([row, col + 1]);
+          if (row + 1 < state.tabledata.length) {
+            near.push([row + 1, col - 1]);
+            near.push([row + 1, col]);
+            near.push([row + 1, col + 1]);
+          }
+          near.forEach((n) => {
+            if (state.tabledata[n[0]][n[1]] !== CODE.Open) {
+              checkAround(n[0], n[1]);
+            }
+          });
+        }
+        if (state.tabledata[row][col] === CODE.Normal) {
+          opencount += 1;
+        }
+        Vue.set(state.tabledata[row], col, counted.length);
+      }
+      checkAround(row, col);
+      let halted = false;
+      let result = '';
+      if (state.data.row * state.data.col - state.data.mine === state.opencount + opencount) {
+        halted = true;
+        result = `${state.Timer}초만에 승리하셨습니다.`;
+      }
+      state.opencount += opencount;
+      state.halted = halted;
+      state.result = result;
     },
     [FlagSpace](state, { row, col }) {
       if (state.tabledata[row][col] === CODE.Mine) {

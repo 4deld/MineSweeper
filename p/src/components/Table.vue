@@ -66,7 +66,7 @@ export default {
             case CODE.ClickMine:
               return '펑';
             default:
-              return this.$store.state.tabledata[row][col] || '';
+              return this.$store.state.tabledata[row][col] || ''; //0이면 빈칸이 됨
           }
         };
       },
