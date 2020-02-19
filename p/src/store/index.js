@@ -66,7 +66,7 @@ export default new Vuex.Store({
     result: '',
     //아직 게임 시작 안했으니 halted는 true
     halted: true,
-
+    opencount : 0,
   },
   mutations: { //mutations 통해서 state에 접근
 
@@ -82,6 +82,8 @@ export default new Vuex.Store({
       state.tabledata = MinePlanting(row, col, mine)
       state.Timer = 0;
       state.halted = false;
+      state.opencount = 0;
+      state.result = ''
     },
     [OpenSpace](state, { row, col }) {
       let opencount = 0;
@@ -145,6 +147,7 @@ export default new Vuex.Store({
       let halted = false;
       let result = '';
       if (state.data.row * state.data.col - state.data.mine === state.opencount + opencount) {
+        // state.opencount = 지금까지 연 칸의 개수 opencount = 지금 연 칸 
         halted = true;
         result = `${state.Timer}초만에 승리하셨습니다.`;
       }
