@@ -44,13 +44,18 @@ export default {
 
 
 <style>
-table {
+ table {
     border-collapse: collapse;
   }
-  td {
+ td {
     border: 1px solid black;
     width: 40px;
     height: 40px;
     text-align: center;
+  }
+  .home{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 </style>

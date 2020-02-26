@@ -1,9 +1,9 @@
 <template>
-  <div>
-     세로 길이<input type="number" :value="row" @change="ChangeRow" /> <!--지역변수를 바꿈 -->
-    가로 길이<input type="number" :value="col" @change="ChangeCol" /> <!--지역변수를 바꿈 -->
-    지뢰 개수<input type="number" :value="mine" @change="ChangeMine" /> <!--지역변수를 바꿈 -->
-    <button @click="ClickBtn">시작</button>
+  <div id="layout">
+    <!--  COL <input type="number" :value="col" @change="ChangeCol" /> -->     
+    <!--  ROW <input type="number" :value="row" @change="ChangeRow" />  -->
+    <!--  MINE <input type="number" :value="mine" @change="ChangeMine" />  -->
+    <button @click="ClickBtn" id="btn">시작</button>
   </div>
 </template>
 
@@ -13,9 +13,9 @@
   export default {
     data() {
       return {
-        row: 10,
-        col: 10,
-        mine: 20,
+        row: 14,
+        col: 18,
+        mine: 40,
       };
     },
     methods: {
@@ -39,3 +39,16 @@
     },
   }
 </script>
+
+<style>
+#btn{
+  background-color: black;
+  color: white;
+  border-radius: 10px;
+}
+#layout{
+  display: flex;
+  justify-content: center;
+}
+
+</style>

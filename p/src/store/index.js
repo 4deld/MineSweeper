@@ -53,7 +53,6 @@ const MinePlanting = (row, col, mine) => {
 };
 
 
-
 export default new Vuex.Store({
   state: {
     tabledata: [],
@@ -151,6 +150,7 @@ export default new Vuex.Store({
         halted = true;
         result = `${state.Timer}초만에 승리하셨습니다.`;
       }
+      
       state.opencount += opencount;
       state.halted = halted;
       state.result = result;
@@ -166,6 +166,8 @@ export default new Vuex.Store({
     [MineSpace](state,{row,col}) {
       state.halted = true;
       Vue.set(state.tabledata[row],col,CODE.ClickMine)
+      let result = `${state.Timer}초만에 패배하셨습니다.`;
+      state.result = result;
     },
     [QuestionSpace](state, { row, col }) {
       if (state.tabledata[row][col] === CODE.FlagOnMine) {
