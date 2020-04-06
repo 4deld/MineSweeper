@@ -1,9 +1,17 @@
 <template>
   <div id="layout">
-    <!--  COL <input type="number" :value="col" @change="ChangeCol" /> -->     
-    <!--  ROW <input type="number" :value="row" @change="ChangeRow" />  -->
-    <!--  MINE <input type="number" :value="mine" @change="ChangeMine" />  -->
-    <button @click="ClickBtn" id="btn">시작</button>
+    <div>
+    <button @click="ClickBtnGreeny" class="btn">초보자</button>
+    <button @click="ClickBtnAmateur" class="btn">아마추어</button>
+    <button @click="ClickBtnProfessional" class="btn">프로페셔널</button>
+    <button @click="ClickBtnCustom" class="btn">커스텀</button>
+    </div>
+    <div class="custom_mode">
+      COL <input type="number" :value="col" @change="ChangeCol" />    
+      ROW <input type="number" :value="row" @change="ChangeRow" /> 
+      MINE <input type="number" :value="mine" @change="ChangeMine" /> 
+      <button @click="ClickBtnCustom" class="btn">업데이트</button>
+     </div>
   </div>
 </template>
 
@@ -29,7 +37,36 @@
       ChangeMine(e) {
         this.mine = e.target.value;
       },
-      ClickBtn() {
+      Set(row,col,mine){
+        this.row=row;
+        this.col=col;
+        this.mine=mine;
+      },
+      ClickBtnGreeny() {
+        this.Set(9,9,10)
+        this.$store.commit(GameStart, { 
+            row: this.row, 
+            col: this.col, 
+            mine: this.mine 
+            });
+      },
+      ClickBtnAmateur() {
+        this.Set(16,16,40)
+        this.$store.commit(GameStart, { 
+            row: this.row, 
+            col: this.col, 
+            mine: this.mine 
+            });
+      },
+      ClickBtnProfessional() {
+        this.Set(16,30,99)
+        this.$store.commit(GameStart, { 
+            row: this.row, 
+            col: this.col, 
+            mine: this.mine 
+            });
+      },
+      ClickBtnCustom() {
         this.$store.commit(GameStart, { 
             row: this.row, 
             col: this.col, 
@@ -41,14 +78,19 @@
 </script>
 
 <style>
-#btn{
+.btn{
   background-color: black;
   color: white;
   border-radius: 10px;
 }
+#layout button{
+  margin: 0 10px;
+}
+
 #layout{
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 </style>
