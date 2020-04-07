@@ -1,7 +1,8 @@
 <template>
   <div class="home">
      <MineForm />
-    <div>{{Timer}}</div>
+     <!-- <div>{{Minecount}}</div> -->
+    <div id="timer">{{Timer}}</div>
     <Table />
     <div>{{result}}</div>
   </div>
@@ -11,6 +12,7 @@
 //mapState 사용
 import { mapState } from 'vuex';
 import store, { Timer } from '../store/index';
+// import {Minecount} from '../store/index';
 import Table from '../components/Table';
 import MineForm from '../components/MineForm';
 let interval;
@@ -57,5 +59,9 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+  #timer{
+    margin: 10px;
+    font-size: 2em;
   }
 </style>

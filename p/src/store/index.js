@@ -10,6 +10,7 @@ export const MineSpace = 'MineSpace'
 export const QuestionSpace = 'QuestionSpace'
 export const NormalSpace = 'NormalSpace'
 export const Timer = 'Timer'
+export const Minecount = 'Minecount'
 
 export const CODE = {
   Mine: -7,
@@ -66,6 +67,7 @@ export default new Vuex.Store({
     //아직 게임 시작 안했으니 halted는 true
     halted: true,
     opencount : 0,
+    Minecount : 9,
   },
   mutations: { //mutations 통해서 state에 접근
 
@@ -83,6 +85,7 @@ export default new Vuex.Store({
       state.halted = false;
       state.opencount = 0;
       state.result = ''
+      state.MineCount = 1
     },
     [OpenSpace](state, { row, col }) {
       let opencount = 0;

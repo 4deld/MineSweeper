@@ -6,7 +6,7 @@
     <button @click="ClickBtnProfessional" class="btn">프로페셔널</button>
     <button @click="ClickBtnCustom" class="btn">커스텀</button>
     </div>
-    <div class="custom_mode">
+    <div class="custom_mode" v-if="localchangemode">
       COL <input type="number" :value="col" @change="ChangeCol" />    
       ROW <input type="number" :value="row" @change="ChangeRow" /> 
       MINE <input type="number" :value="mine" @change="ChangeMine" /> 
@@ -24,6 +24,7 @@
         row: 14,
         col: 18,
         mine: 40,
+        localchangemode : 0,
       };
     },
     methods: {
@@ -49,6 +50,7 @@
             col: this.col, 
             mine: this.mine 
             });
+        this.localchangemode = 0
       },
       ClickBtnAmateur() {
         this.Set(16,16,40)
@@ -57,6 +59,7 @@
             col: this.col, 
             mine: this.mine 
             });
+            this.localchangemode = 0
       },
       ClickBtnProfessional() {
         this.Set(16,30,99)
@@ -65,6 +68,7 @@
             col: this.col, 
             mine: this.mine 
             });
+            this.localchangemode = 0
       },
       ClickBtnCustom() {
         this.$store.commit(GameStart, { 
@@ -72,6 +76,7 @@
             col: this.col, 
             mine: this.mine 
             });
+            this.localchangemode = 1
       }
     },
   }
@@ -81,7 +86,8 @@
 .btn{
   background-color: black;
   color: white;
-  border-radius: 10px;
+  border-radius: 10%;
+  font-size: 1.5em;
 }
 #layout button{
   margin: 0 10px;
@@ -91,6 +97,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+input{
+  width: 5vw;
+}
+.custom_mode{
+  margin: 10px 0;
 }
 
 </style>
