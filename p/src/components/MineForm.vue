@@ -6,7 +6,7 @@
     <button @click="ClickBtnProfessional" class="btn">프로페셔널</button>
     <button @click="ClickBtnCustom" class="btn">커스텀</button>
     </div>
-    <div class="custom_mode" v-if="localchangemode">
+    <div id="custom_mode" v-if="localchangemode">
       COL <input type="number" :value="col" @change="ChangeCol" />    
       ROW <input type="number" :value="row" @change="ChangeRow" /> 
       MINE <input type="number" :value="mine" @change="ChangeMine" /> 
@@ -89,6 +89,7 @@
   border-radius: 10%;
   font-size: 1.5em;
 }
+
 #layout button{
   margin: 0 10px;
 }
@@ -98,11 +99,15 @@
   flex-direction: column;
   align-items: center;
 }
+
 input{
-  width: 5vw;
+  width: 8vw;
+  font-size: 1.3em;
 }
-.custom_mode{
+
+#custom_mode{
   margin: 10px 0;
+  font-size: 1.4em;
 }
 
 </style>

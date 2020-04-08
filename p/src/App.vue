@@ -4,7 +4,6 @@
     <router-view/>
   </div>
 </template>
-
 <style>
 *{
   margin: 0;

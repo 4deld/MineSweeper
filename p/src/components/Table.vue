@@ -44,9 +44,11 @@ export default {
             case CODE.QuestionOnMine:
               return {
                 background: 'yellow',
+                
               };
             default:
-              return {};
+              return {
+              };
           }
         };
       },
