@@ -4,12 +4,12 @@
           <td
         v-for="(colData, colidx) in rowData"
         :key="colidx"
-        :style="colDataStyle(rowidx, colidx)"
+        :style="DataStyle(rowidx, colidx)"
         @click="ClickTd(rowidx, colidx)"
         @contextmenu.prevent="RightClickTd(rowidx, colidx)" 
       >
       <!-- contextmenu - 오른쪽 클릭 -->
-              {{colDataText(rowidx,colidx)}}
+              {{DataText(rowidx,colidx)}}
           </td>
       </tr>
   </table>
@@ -22,7 +22,7 @@ export default {
     computed:{
         ...mapState(['tabledata','halted']),
         //코드를 검사해서 코드마다 스타일을 다르게 적용
-        colDataStyle(state) {
+        DataStyle(state) {
         return (row, col) => {
           switch (this.$store.state.tabledata[row][col]) {
             case CODE.Normal:
@@ -52,7 +52,7 @@ export default {
           }
         };
       },
-      colDataText() {
+      DataText() {
         return (row, col) => {
           switch (this.$store.state.tabledata[row][col]) {
             case CODE.Mine:

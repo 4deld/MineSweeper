@@ -67,7 +67,7 @@ export default new Vuex.Store({
     //아직 게임 시작 안했으니 halted는 true
     halted: true,
     opencount : 0,
-    Minecount : 9,
+    Minecount : 1234,
   },
   mutations: { //mutations 통해서 state에 접근
 
@@ -85,7 +85,7 @@ export default new Vuex.Store({
       state.halted = false;
       state.opencount = 0;
       state.result = ''
-      state.MineCount = 1
+      state.Minecount = mine
     },
     [OpenSpace](state, { row, col }) {
       let opencount = 0;
@@ -159,6 +159,7 @@ export default new Vuex.Store({
       state.result = result;
     },
     [FlagSpace](state, { row, col }) {
+      state.Minecount-=1
       if (state.tabledata[row][col] === CODE.Mine) {
         Vue.set(state.tabledata[row], col, CODE.FlagOnMine);
       }
@@ -181,6 +182,7 @@ export default new Vuex.Store({
       }
     },
     [NormalSpace](state, { row, col }) {
+      state.Minecount+=1
       if (state.tabledata[row][col] === CODE.QuestionOnMine) {
         Vue.set(state.tabledata[row], col, CODE.Mine);
       }
