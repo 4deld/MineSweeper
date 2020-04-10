@@ -29,23 +29,67 @@ export default {
             case CODE.Mine:
               return {
                 background: '#444',
+                font: 'bold 25px serif'
               };
             case CODE.ClickMine:
             case CODE.Open:
               return {
                 background: 'white',
+                font: 'bold 25px serif'
               };
             case CODE.Flag:
             case CODE.FlagOnMine:
               return {
                 background: 'red',
+                font: 'bold 25px serif'
               };
             case CODE.Question:
             case CODE.QuestionOnMine:
               return {
                 background: 'yellow',
-                
+                font: 'bold 25px serif'
               };
+            case 1:
+              return{
+                color:'lightblue',
+                font: 'bold 25px serif'
+              };
+            case 2:
+              return{
+                color:'lightgreen',
+                font: 'bold 25px serif'
+              }
+            case 3:
+              return{
+                color:'lightcoral',
+                font: 'bold 25px serif'
+              }
+              case 4:
+              return{
+                color:'plum',
+                font: 'bold 25px serif'
+              };
+            case 5:
+              return{
+                color:'lightpink',
+                font: 'bold 25px serif'
+              }
+            case 6:
+              return{
+                color:'orange',
+                font: 'bold 25px serif'
+              }
+              case 7:
+              return{
+                color:'gold',
+                font: 'bold 25px serif'
+              };
+            case 8:
+              return{
+                color:'lightseagreen',
+                font: 'bold 25px serif'
+              }
+              
             default:
               return {
               };
@@ -66,7 +110,7 @@ export default {
             case CODE.Question:
               return '?';
             case CODE.ClickMine:
-              return '펑';
+              return '*';
             default:
               return this.$store.state.tabledata[row][col] || ''; //0이면 빈칸이 됨
           }
