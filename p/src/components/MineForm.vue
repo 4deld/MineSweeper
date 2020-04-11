@@ -7,8 +7,8 @@
     <button @click="ClickBtnCustom" class="btn">커스텀</button>
     </div>
     <div id="custom_mode" v-if="localchangemode">
-      COL <input type="number" :value="col" @change="ChangeCol" />    
-      ROW <input type="number" :value="row" @change="ChangeRow" /> 
+      COL <input type="number" :value="col" min="1" @change="ChangeCol" />    
+      ROW <input type="number" :value="row" min="1" @change="ChangeRow" /> 
       MINE <input type="number" :value="mine" @change="ChangeMine" /> 
       <button @click="ClickBtnCustom" class="btn">업데이트</button>
      </div>
@@ -86,8 +86,8 @@
 .btn{
   background-color: black;
   color: white;
-  border-radius: 10%;
-  font-size: 1.5em;
+  font-size: 25px;
+  border: 0;
 }
 
 #layout button{
@@ -101,13 +101,13 @@
 }
 
 input{
-  width: 8vw;
-  font-size: 1.3em;
+  width: 5vw;
+  font-size: 30px;
 }
 
 #custom_mode{
   margin: 10px 0;
-  font-size: 1.4em;
+  font-size: 25px;
 }
 
 </style>

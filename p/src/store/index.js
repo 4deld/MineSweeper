@@ -63,7 +63,7 @@ export default new Vuex.Store({
       mine: 0 //지뢰
     },
     Timer: 0,
-    result: '',
+    result: 'RESULT',
     //아직 게임 시작 안했으니 halted는 true
     halted: true,
     opencount : 0,
@@ -84,7 +84,7 @@ export default new Vuex.Store({
       state.Timer = 0;
       state.halted = false;
       state.opencount = 0;
-      state.result = ''
+      state.result = 'RESULT'
       state.Minecount = mine
     },
     [OpenSpace](state, { row, col }) {
@@ -147,11 +147,11 @@ export default new Vuex.Store({
       }
       checkAround(row, col);
       let halted = false;
-      let result = '';
+      let result = 'RESULT';
       if (state.data.row * state.data.col - state.data.mine === state.opencount + opencount) {
         // state.opencount = 지금까지 연 칸의 개수 opencount = 지금 연 칸 
         halted = true;
-        result = `${state.Timer}초만에 승리하셨습니다.`;
+        result = `${state.Timer}초만에 승리`;
       }
       
       state.opencount += opencount;
@@ -170,7 +170,7 @@ export default new Vuex.Store({
     [MineSpace](state,{row,col}) {
       state.halted = true;
       Vue.set(state.tabledata[row],col,CODE.ClickMine)
-      let result = `${state.Timer}초만에 패배하셨습니다.`;
+      let result = `${state.Timer}초만에 패배`;
       state.result = result;
     },
     [QuestionSpace](state, { row, col }) {

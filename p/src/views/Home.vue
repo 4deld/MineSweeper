@@ -1,13 +1,17 @@
 <template>
 <!-- git config --global core.autocrlf true -->
-  <div class="home">
+  <div class="homelayout">
+    <div class="home">
      <MineForm />
      <div class="flex">
      <div id="cnt">{{Minecount}}</div>
     <div id="timer">{{Timer}}</div>
     </div>
     <Table />
-    <div>{{result}}</div>
+    </div>
+    <div class="res">
+      {{result}}
+      </div>
   </div>
 </template>
 
@@ -70,5 +74,19 @@ export default {
   .flex{
     display: flex;
     align-items:center;
+  }
+  .res{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    font-size: 3em;
+    right: 5vw;
+    top: 1vh;
+  }
+  .homelayout{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content:center;
   }
 </style>
