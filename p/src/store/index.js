@@ -67,7 +67,7 @@ export default new Vuex.Store({
     //아직 게임 시작 안했으니 halted는 true
     halted: true,
     opencount : 0,
-    Minecount : 1234,
+    Minecount : 0,
   },
   mutations: { //mutations 통해서 state에 접근
 
@@ -82,7 +82,7 @@ export default new Vuex.Store({
       // Vue.set(state.data,'row',row);
       state.tabledata = MinePlanting(row, col, mine)
       state.Timer = 0;
-      state.halted = false;
+      state.halted = true;
       state.opencount = 0;
       state.result = 'RESULT'
       state.Minecount = mine

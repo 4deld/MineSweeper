@@ -17,11 +17,12 @@
 
 <script>
 import { mapState } from 'vuex'
-import { MineSpace , CODE, FlagSpace , NormalSpace , OpenSpace , QuestionSpace  } from '../store/index';
+import { MineSpace , CODE, FlagSpace , NormalSpace , OpenSpace , QuestionSpace } from '../store/index';
 export default {
     computed:{
-        ...mapState(['tabledata','halted']),
+        ...mapState(['tabledata','halted','Timer']),
         //코드를 검사해서 코드마다 스타일을 다르게 적용
+
         DataStyle(state) {
         return (row, col) => {
           switch (this.$store.state.tabledata[row][col]) {
