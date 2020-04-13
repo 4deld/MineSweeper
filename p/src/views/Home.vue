@@ -5,6 +5,7 @@
      <MineForm />
      <div class="flex">
      <div id="cnt">{{Minecount}}</div>
+     <img src="../assets/logo.png" alt="" class="image">
     <div id="timer">{{Timer}}</div>
     </div>
     <Table />
@@ -74,6 +75,7 @@ export default {
   .flex{
     display: flex;
     align-items:center;
+    justify-content: center;
   }
   .res{
     position: absolute;
@@ -88,5 +90,10 @@ export default {
     flex-direction: row;
     align-items: center;
     justify-content:center;
+  }
+  .image{
+    width: 11%;
+    display: block;
+    cursor: pointer;
   }
 </style>

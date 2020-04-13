@@ -159,6 +159,7 @@ export default new Vuex.Store({
       state.result = result;
     },
     [FlagSpace](state, { row, col }) {
+      state.halted=false
       state.Minecount-=1
       if (state.tabledata[row][col] === CODE.Mine) {
         Vue.set(state.tabledata[row], col, CODE.FlagOnMine);

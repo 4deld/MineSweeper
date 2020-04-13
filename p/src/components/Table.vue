@@ -20,7 +20,7 @@ import { mapState } from 'vuex'
 import { MineSpace , CODE, FlagSpace , NormalSpace , OpenSpace , QuestionSpace } from '../store/index';
 export default {
     computed:{
-        ...mapState(['tabledata','halted','Timer']),
+        ...mapState(['tabledata','halted']),
         //코드를 검사해서 코드마다 스타일을 다르게 적용
 
         DataStyle(state) {
@@ -120,7 +120,7 @@ export default {
     },
 methods: {
       ClickTd(row, col) {
-        if (this.halted) {
+        if (this.halted && this.$store.state.Timer) {
           return;
         }
         //지뢰 밟기와 일반 칸 밟기 나눔
@@ -134,7 +134,7 @@ methods: {
         }
       },
       RightClickTd(row, col) {
-        if (this.halted) {
+        if (this.halted && this.$store.state.Timer) {
           return;
         }
         console.log(row, col);
