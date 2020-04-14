@@ -1,5 +1,6 @@
 <template>
 <!-- git config --global core.autocrlf true -->
+<!-- minefrom.vue에서 하면 편한데 그러면 저기 Minecount랑 Timer 사이에 못넣나? -->
   <div class="homelayout">
     <div class="home">
      <MineForm />
@@ -72,7 +73,7 @@ export default {
   }
   #timer, #cnt{
     margin: 10px;
-    font-size: 2em;
+    font-size: 3em;
   }
   .flex{
     display: flex;

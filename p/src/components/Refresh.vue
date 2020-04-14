@@ -1,19 +1,27 @@
 <template>
   <div class="re">
-        <img src="../assets/logo.png" alt="" class="image">
+        <img src="../assets/logo.png" alt="" class="image" @click="refresh">
   </div>
 </template>
 
 <script>
 import { GameStart } from '../store/index';
 export default {
-
+    methods:{
+        refresh(){
+            this.$store.commit(GameStart, { 
+            row,
+            col,
+            mine
+            });
+        }
+    }
 }
 </script>
 
 <style>
   .image{
-    width:20px;
+    width:50px;
     cursor: pointer;
   }
   .re{
