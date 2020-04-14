@@ -5,7 +5,7 @@
      <MineForm />
      <div class="flex">
      <div id="cnt">{{Minecount}}</div>
-     <img src="../assets/logo.png" alt="" class="image">
+    <Refresh />
     <div id="timer">{{Timer}}</div>
     </div>
     <Table />
@@ -23,12 +23,14 @@ import store, { Timer } from '../store/index';
 import {Minecount} from '../store/index';
 import Table from '../components/Table';
 import MineForm from '../components/MineForm';
+import Refresh from '../components/Refresh'
 let interval;
 export default {
   store,
   components:{
     Table,
     MineForm, 
+    Refresh
   },
   computed: {
     //mapped computed 속성의 이름이 상태 하위 트리이름과 동일할 
@@ -91,9 +93,5 @@ export default {
     align-items: center;
     justify-content:center;
   }
-  .image{
-    width: 11%;
-    display: block;
-    cursor: pointer;
-  }
+
 </style>

@@ -175,6 +175,7 @@ export default new Vuex.Store({
       state.result = result;
     },
     [QuestionSpace](state, { row, col }) {
+      state.halted=false
       if (state.tabledata[row][col] === CODE.FlagOnMine) {
         Vue.set(state.tabledata[row], col, CODE.QuestionOnMine);
       }
@@ -183,6 +184,7 @@ export default new Vuex.Store({
       }
     },
     [NormalSpace](state, { row, col }) {
+      state.halted=false
       state.Minecount+=1
       if (state.tabledata[row][col] === CODE.QuestionOnMine) {
         Vue.set(state.tabledata[row], col, CODE.Mine);
