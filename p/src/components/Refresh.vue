@@ -10,9 +10,9 @@ export default {
     methods:{
         refresh(){
             this.$store.commit(GameStart, { 
-            row,
-            col,
-            mine
+            row: this.$store.state.data.row,
+            col: this.$store.state.data.col, 
+            mine: this.$store.state.data.mine,
             });
         }
     }

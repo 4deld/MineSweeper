@@ -1,6 +1,6 @@
 <template>
 <!-- git config --global core.autocrlf true -->
-<!-- minefrom.vue에서 하면 편한데 그러면 저기 Minecount랑 Timer 사이에 못넣나? -->
+<!-- 0초만에 패배 버그 수정 -->
   <div class="homelayout">
     <div class="home">
      <MineForm />
@@ -25,6 +25,7 @@ import {Minecount} from '../store/index';
 import Table from '../components/Table';
 import MineForm from '../components/MineForm';
 import Refresh from '../components/Refresh'
+import { GameStart } from '../store/index';
 let interval;
 export default {
   store,
@@ -32,6 +33,13 @@ export default {
     Table,
     MineForm, 
     Refresh
+  },
+  created(){
+    this.$store.commit(GameStart, { 
+            row: this.$store.state.data.row,
+            col: this.$store.state.data.col, 
+            mine: this.$store.state.data.mine,
+            });
   },
   computed: {
     //mapped computed 속성의 이름이 상태 하위 트리이름과 동일할 

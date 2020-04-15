@@ -58,9 +58,9 @@ export default new Vuex.Store({
   state: {
     tabledata: [],
     data: {
-      row: 0, //가로
-      col: 0, //세로
-      mine: 0 //지뢰
+      row: 9, //가로
+      col: 9, //세로
+      mine: 10 //지뢰
     },
     Timer: 0,
     result: 'RESULT',
