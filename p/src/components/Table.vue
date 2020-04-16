@@ -120,10 +120,11 @@ export default {
     },
 methods: {
       ClickTd(row, col) {
-        if (this.halted && this.$store.state.Timer) {
+        if (this.halted && this.$store.state.Firstclick) {
           return;
         }
         //지뢰 밟기와 일반 칸 밟기 나눔
+        this.$store.state.Firstclick = true
         switch (this.tabledata[row][col]) {
           case CODE.Normal:
             return this.$store.commit(OpenSpace, { row, col });
@@ -134,9 +135,10 @@ methods: {
         }
       },
       RightClickTd(row, col) {
-        if (this.halted && this.$store.state.Timer) {
+       if (this.halted && this.$store.state.Firstclick) {
           return;
         }
+        this.$store.state.Firstclick = true
         console.log(row, col);
         switch (this.tabledata[row][col]) {
           case CODE.Normal:

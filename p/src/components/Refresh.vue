@@ -14,6 +14,7 @@ export default {
             col: this.$store.state.data.col, 
             mine: this.$store.state.data.mine,
             });
+            this.$store.state.Firstclick = false
         }
     }
 }

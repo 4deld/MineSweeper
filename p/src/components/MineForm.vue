@@ -51,6 +51,7 @@
             mine: this.mine 
             });
         this.localchangemode = 0
+        this.$store.state.Firstclick = false
       },
       ClickBtnAmateur() {
         this.Set(16,16,40)
@@ -60,6 +61,7 @@
             mine: this.mine 
             });
             this.localchangemode = 0
+            this.$store.state.Firstclick = false
       },
       ClickBtnProfessional() {
         this.Set(16,30,99)
@@ -69,6 +71,7 @@
             mine: this.mine 
             });
             this.localchangemode = 0
+            this.$store.state.Firstclick = false
       },
       ClickBtnCustom() {
         this.$store.commit(GameStart, { 
@@ -77,6 +80,7 @@
             mine: this.mine 
             });
             this.localchangemode = 1
+            this.$store.state.Firstclick = false
       }
     },
   }
