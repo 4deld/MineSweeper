@@ -1,6 +1,5 @@
 <template>
 <!-- git config --global core.autocrlf true -->
-<!-- 0초만에 패배 버그 수정 -->
   <div class="homelayout">
     <div class="home">
      <MineForm />

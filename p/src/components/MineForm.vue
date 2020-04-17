@@ -7,8 +7,8 @@
     <button @click="ClickBtnCustom" class="btn">커스텀</button>
     </div>
     <div id="custom_mode" v-if="localchangemode">
-      COL <input type="number" :value="col" min="1" @change="ChangeCol" />    
-      ROW <input type="number" :value="row" min="1" @change="ChangeRow" /> 
+      COL <input type="number" :value="col" @change="ChangeCol"/>    
+      ROW <input type="number" :value="row" @change="ChangeRow"  /> 
       MINE <input type="number" :value="mine" @change="ChangeMine" /> 
       <button @click="ClickBtnCustom" class="btn">업데이트</button>
      </div>
@@ -28,7 +28,6 @@
       };
     },
     methods: {
-        //바뀐 지역변수를 vuex에 전송
      ChangeRow(e) {
         this.row = e.target.value;
       },
@@ -43,6 +42,7 @@
         this.col=col;
         this.mine=mine;
       },
+      //바뀐 지역변수를 vuex에 전송
       ClickBtnGreeny() {
         this.Set(9,9,10)
         this.$store.commit(GameStart, { 
@@ -83,6 +83,23 @@
             this.$store.state.Firstclick = false
       }
     },
+    watch:{
+      row(){
+        if(this.row<1){
+          this.row=10
+        }
+      },
+      col(){
+        if(this.col<1){
+          this.col=10
+        }
+      },
+      mine(){
+        if(this.mine>(this.col*this.row)-1 || this.mine<1){
+          this.mine = (this.col*this.row)-1
+        }
+      },
+    }
   }
 </script>
 
