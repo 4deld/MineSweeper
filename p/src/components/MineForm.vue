@@ -85,18 +85,18 @@
     },
     watch:{
       row(){
-        if(this.row<1){
+        if(this.mine>(this.col*this.row)-1 || this.row<1){
           this.row=10
         }
       },
       col(){
-        if(this.col<1){
+        if(this.mine>(this.col*this.row)-1 || this.col<1){
           this.col=10
         }
       },
       mine(){
         if(this.mine>(this.col*this.row)-1 || this.mine<1){
-          this.mine = (this.col*this.row)-1
+          this.mine = 9
         }
       },
     }
