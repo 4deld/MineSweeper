@@ -30,7 +30,7 @@ export default {
             case CODE.Mine:
               return {
                 background: '#444',
-                font: 'bold 25px serif'
+                font: 'bold 25px serif',
               };
             case CODE.ClickMine:
             case CODE.Open:
@@ -101,7 +101,7 @@ export default {
         return (row, col) => {
           switch (this.$store.state.tabledata[row][col]) {
             case CODE.Mine:
-              return 'X';
+              return 'x';
             case CODE.Normal:
               return '';
             case CODE.FlagOnMine:

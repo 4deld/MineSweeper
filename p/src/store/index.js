@@ -86,7 +86,8 @@ export default new Vuex.Store({
       state.halted = true;
       state.opencount = 0;
       state.result = 'RESULT'
-      state.Minecount = mine
+      state.Minecount = mine,
+      state.Firstclick = false
     },
     [OpenSpace](state, { row, col }) {
       let opencount = 0;
@@ -149,6 +150,7 @@ export default new Vuex.Store({
       checkAround(row, col);
       let halted = false;
       let result = 'RESULT';
+      let Gameresult = false;
       if (state.data.row * state.data.col - state.data.mine === state.opencount + opencount) {
         // state.opencount = 지금까지 연 칸의 개수 opencount = 지금 연 칸 
         halted = true;
@@ -174,6 +176,7 @@ export default new Vuex.Store({
       Vue.set(state.tabledata[row],col,CODE.ClickMine)
       let result = `${state.Timer}초만에 패배`;
       state.result = result;
+      
     },
     [QuestionSpace](state, { row, col }) {
       state.halted=false
