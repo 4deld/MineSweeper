@@ -1,2 +1,4 @@
-﻿# MineSweeper
+# MineSweeper
+
+MINESWEEPER GAME
 
