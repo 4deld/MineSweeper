@@ -2,14 +2,15 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import VueSocketIO from 'vue-socket.io'
-import SocketIO from "socket.io-client"
+import VueSocketio from 'vue-socket.io';
+import io from 'socket.io-client';  
+
+const socket = io('http://localhost:3000');
+
+//Vue.use(VueSocketio, 'http://localhost:8080');
 
 
-Vue.use(VueSocketio, 'http://localhost:8080');
-
-
-// Vue.config.productionTip = false
+Vue.config.productionTip = false
 
 // const options = { path: '/my-app/' }; //Options object to pass into SocketIO
 
