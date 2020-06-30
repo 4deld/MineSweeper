@@ -1,11 +1,16 @@
 const express = require('express');
 const app = express();
+
 const server = require('http').Server(app);
+
 var io = require('socket.io').listen(server);
+
 // const io = require('socket.io')(server,{
 //     pingTimeout: 1000,
 // });
 
+
+app.use(express.static(__dirname + '/public'));
 
 
 app.get('/', function (req, res) {

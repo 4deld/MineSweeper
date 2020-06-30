@@ -3,6 +3,35 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
+
+const messages = {
+  state: {
+    messages: []
+  },
+  mutations: {
+    SOCKET_CHAT_MESSAGE(state, message) {
+      state.messages.push(message);
+    }
+  },
+  actions: {
+    socket_chatMessage() {
+      console.log('this action will be called');
+    }
+  },
+};
+
+const notifications = {
+  state: {
+    notifications: []
+  },
+  mutations: {
+    SOCKET_CHAT_MESSAGE(state, message) {
+      state.notifications.push({ type: 'message', payload: message });
+    }
+  },
+};
+
+
 export const GameStart = 'GameStart'
 export const OpenSpace = 'OpenSpace'
 export const FlagSpace = 'FlagSpace'
@@ -204,5 +233,7 @@ export default new Vuex.Store({
   actions: {
   },
   modules: {
+    messages,
+    notifications,
   }
 })
