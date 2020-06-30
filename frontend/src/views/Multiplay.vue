@@ -1,18 +1,18 @@
 <template>
 <!-- git config --global core.autocrlf true -->
+  <!-- <div v-if="username()">
+
+  </div> -->
   <div class="homelayout">
-    <div class="home">
-     <MineForm />
-     <div class="flex">
-     <div id="cnt">{{Minecount}}</div>
-    <Refresh />
-    <div id="timer">{{Timer}}</div>
+    <div class="left">
+      <button class="lefttop btnx">방 만들기</button>
+      <button class="leftbottom btnx" @click="Single()">싱글플레이</button>
     </div>
-    <Table />
+    <div class="center">CENTER</div>
+    <div class="right">
+      <div class="righttop">채팅</div>
+      <div class="rightbox">채팅칸</div>
     </div>
-    <div class="res">
-      {{result}}
-      </div>
   </div>
 </template>
 
@@ -59,47 +59,52 @@ export default {
         }
       }
     },
+    methods:{
+      Single(){
+        this.$router.push('/')
+      }
+    }
 }
 </script>
 
 
-<style>
- table {
-    border-collapse: collapse;
-  }
- td {
-    border: 1px solid black;
-    width: 40px;
-    height: 40px;
-    text-align: center;
-  }
-  .home{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  #timer, #cnt{
-    margin: 10px;
-    font-size: 3em;
-  }
-  .flex{
-    display: flex;
-    align-items:center;
-    justify-content: center;
-  }
-  .res{
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    font-size: 3em;
-    right: 5vw;
-    top: 1vh;
-  }
+<style scoped>
   .homelayout{
     display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content:center;
+    justify-content:space-between;
+    height: 100vh;
   }
+  .left{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+    width: 25vw;
+  }
+  .right{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+  }
+  .righttop{
+    width: 100px;
+    height: 100px;
+  }
+  .rightbox{
+    width: 100px;
+    height: 100px;
+  }
+  .btnx{
+  background-color: black;
+  color: white;
+  font-size: 25px;
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+  width: fit-content;
+  padding: 10px;
+}
 
 </style>

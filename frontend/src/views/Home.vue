@@ -3,7 +3,7 @@
   <div class="homelayout">
     <div class="home">
      <MineForm />
-     <div class="flex">
+     <div class="flexbox">
      <div id="cnt">{{Minecount}}</div>
     <Refresh />
     <div id="timer">{{Timer}}</div>
@@ -38,7 +38,7 @@ export default {
             row: this.$store.state.data.row,
             col: this.$store.state.data.col, 
             mine: this.$store.state.data.mine,
-            });
+          });
   },
   computed: {
     //mapped computed 속성의 이름이 상태 하위 트리이름과 동일할 
@@ -82,7 +82,7 @@ export default {
     margin: 10px;
     font-size: 3em;
   }
-  .flex{
+  .flexbox{
     display: flex;
     align-items:center;
     justify-content: center;

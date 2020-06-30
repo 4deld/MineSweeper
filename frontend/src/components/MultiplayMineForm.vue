@@ -5,7 +5,7 @@
     <button @click="ClickBtnAmateur" class="btn">아마추어</button>
     <button @click="ClickBtnProfessional" class="btn">프로페셔널</button>
     <button @click="ClickBtnCustom" class="btn">커스텀</button>
-    <button @click="Multiplay" class="btn">멀티플레이</button>
+    <!-- <button @click="Multiplay" class="btn">멀티플레이</button> -->
     </div>
     <div id="custom_mode" v-if="localchangemode">
       COL <input type="number" :value="col" @change="ChangeCol"/>    
@@ -113,7 +113,6 @@
   color: white;
   font-size: 25px;
   border: 0;
-  cursor: pointer;
 }
 
 #layout button{
