@@ -1,14 +1,27 @@
 import Vue from 'vue'
 import App from './App.vue'
-import router from './router'
-import store from './store'
+import router from './router/index'
+import store from './store/index'
+
 import VueSocketIOExt from "vue-socket.io-extended";
 import io from 'socket.io-client';  
+
+import VueMaterial from 'vue-material'
+import 'vue-material/dist/theme/black-green-light.css'
+import 'vue-material/dist/vue-material.css' 
+
+import Directives from '../plugin/directives'
+
 
 const socket = io('http://localhost:3000');
 
 Vue.use(VueSocketIOExt, socket);
 
+Vue.use(VueMaterial)
+
+Vue.use(Directives)
+
+//마지막라인은 socket 을 vue 인스턴스 변수로 등록하여 컴포넌트에서 사용할 수 있도록 하였습니다.
 Vue.prototype.$socket = socket;
 
 Vue.config.productionTip = false

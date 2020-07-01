@@ -11,53 +11,23 @@
     <div class="center">CENTER</div>
     <div class="right">
       <div class="righttop">채팅</div>
+      <Chat msg="Welcome to Your Vue.js App"/>
       <div class="rightbox">채팅칸</div>
     </div>
   </div>
 </template>
 
 <script>
-//mapState 사용
-import { mapState } from 'vuex';
-import store, { Timer } from '../store/index';
-import {Minecount} from '../store/index';
-import Table from '../components/Table';
-import MineForm from '../components/MineForm';
-import Refresh from '../components/Refresh'
-import { GameStart } from '../store/index';
-let interval;
+import Chat from '../components/Chat'
+
 export default {
-  store,
   components:{
-    Table,
-    MineForm, 
-    Refresh
-  },
-  created(){
-    this.$store.commit(GameStart, { 
-            row: this.$store.state.data.row,
-            col: this.$store.state.data.col, 
-            mine: this.$store.state.data.mine,
-            });
+    Chat
   },
   computed: {
-    //mapped computed 속성의 이름이 상태 하위 트리이름과 동일할 
-    //경우 문자열 배열을 mapState로 넘길 수 있다
-      ...mapState(['Timer', 'result', 'halted','Minecount']),
     },
     watch:{
-      halted(value, oldvalue){
-        //게임시작
-        if(value===false){
-          interval = setInterval(() => {
-            this.$store.commit(Timer);
-          },1000)
-        }
-        //중단
-        else{
-          clearInterval(interval)
-        }
-      }
+    
     },
     methods:{
       Single(){
