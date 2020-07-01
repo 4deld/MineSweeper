@@ -3,7 +3,7 @@
         <md-app>
             <md-app-toolbar class="md-primary">
                 <div class="md-toolbar-row">
-                    <span class="md-title">My Chat App</span>
+                    <span class="md-title">채팅</span>
                 </div>
             </md-app-toolbar>
             <md-app-content>
@@ -26,9 +26,11 @@
 
 
     export default {
-        //명시적으로 컴포넌트이름 나타내는거   재귀적으로 사용되거나 반복해서 사용될때 꼬이는거 막아주는역할
+        //명시적으로 컴포넌트이름 나타내는거  재귀적으로 사용되거나 반복해서 사용될때 꼬이는거 막아주는역할
         name: 'Chat', 
         created() {
+            //서버에서 서버에서 emit 을 통해 클라이언트로 메세지를 전달하였으므로, 클라이언트에서 같은 이벤트명을 사용하여
+            //서버로부터 데이터를 받도록 합니다. 
             this.$socket.on('chat', (data)=> {
                 this.textarea += data.message + "\n"
             })
@@ -41,6 +43,7 @@
 
         },
         methods: {
+            //Submit 버튼의 onclick 이벤트가 발생하면  서버로 데이터를 전송하고 현재 입력중인 데이터를 지웁니다.
             sendMessage () {
 
                 this.$socket.emit('chat',{
@@ -55,12 +58,5 @@
 </script>
 
 <style>
-    .md-app {
-        height: 800px;
-        border: 1px solid rgba(#ffffff, .12);
-    }
-
-    .md-textarea {
-        height: 300px;
-    }
+    
 </style>

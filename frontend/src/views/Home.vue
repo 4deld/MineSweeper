@@ -1,5 +1,4 @@
 <template>
-<!-- git config --global core.autocrlf true -->
   <div class="homelayout">
     <div class="home">
      <MineForm />

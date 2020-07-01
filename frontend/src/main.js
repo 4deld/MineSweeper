@@ -21,7 +21,7 @@ Vue.use(VueMaterial)
 
 Vue.use(Directives)
 
-//마지막라인은 socket 을 vue 인스턴스 변수로 등록하여 컴포넌트에서 사용할 수 있도록 하였습니다.
+//socket을 vue인스턴스 변수로 등록하여 컴포넌트에서 사용할 수 있음
 Vue.prototype.$socket = socket;
 
 Vue.config.productionTip = false

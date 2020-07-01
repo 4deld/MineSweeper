@@ -1,5 +1,4 @@
 <template>
-<!-- git config --global core.autocrlf true -->
   <!-- <div v-if="username()">
 
   </div> -->
@@ -10,9 +9,7 @@
     </div>
     <div class="center">CENTER</div>
     <div class="right">
-      <div class="righttop">채팅</div>
-      <Chat msg="Welcome to Your Vue.js App"/>
-      <div class="rightbox">채팅칸</div>
+      <Chat/>
     </div>
   </div>
 </template>
@@ -27,7 +24,6 @@ export default {
   computed: {
     },
     watch:{
-    
     },
     methods:{
       Single(){
