@@ -26,7 +26,10 @@ const notifications = {
   },
   mutations: {
     SOCKET_CHAT_MESSAGE(state, message) {
-      state.notifications.push({ type: 'message', payload: message });
+      state.notifications.push({
+        type: 'message',
+        payload: message
+      });
     }
   },
 };
@@ -95,13 +98,17 @@ export default new Vuex.Store({
     result: 'RESULT',
     //아직 게임 시작 안했으니 halted는 true
     halted: true,
-    opencount : 0,
-    Minecount : 0,
+    opencount: 0,
+    Minecount: 0,
     Firstclick: false,
   },
   mutations: { //mutations 통해서 state에 접근
 
-    [GameStart](state, { row, col, mine }) {
+    [GameStart](state, {
+      row,
+      col,
+      mine
+    }) {
       state.data = {
         row,
         col,
@@ -116,9 +123,12 @@ export default new Vuex.Store({
       state.opencount = 0;
       state.result = 'RESULT'
       state.Minecount = mine,
-      state.Firstclick = false
+        state.Firstclick = false
     },
-    [OpenSpace](state, { row, col }) {
+    [OpenSpace](state, {
+      row,
+      col
+    }) {
       let opencount = 0;
       const ck = []; //방문했는지 체크
       function checkAround(row, col) { // 주변 8칸 지뢰인지 검색
@@ -148,7 +158,7 @@ export default new Vuex.Store({
             state.tabledata[row + 1][col - 1], state.tabledata[row + 1][col], state.tabledata[row + 1][col + 1]
           ]);
         }
-        const counted = around.filter(function(v) {
+        const counted = around.filter(function (v) {
           return [CODE.Mine, CODE.FlagOnMine, CODE.QuestionOnMine].includes(v);
         });
         if (counted.length === 0 && row > -1) { // 주변칸에 지뢰가 하나도 없으면
@@ -185,44 +195,53 @@ export default new Vuex.Store({
         halted = true;
         result = `${state.Timer}초만에 승리`;
       }
-      
+
       state.opencount += opencount;
       state.halted = halted;
       state.result = result;
     },
-    [FlagSpace](state, { row, col }) {
-      state.halted=false
-      state.Minecount-=1
+    [FlagSpace](state, {
+      row,
+      col
+    }) {
+      state.halted = false
+      state.Minecount -= 1
       if (state.tabledata[row][col] === CODE.Mine) {
         Vue.set(state.tabledata[row], col, CODE.FlagOnMine);
-      }
-      else {
+      } else {
         Vue.set(state.tabledata[row], col, CODE.Flag);
       }
     },
-    [MineSpace](state,{row,col}) {
+    [MineSpace](state, {
+      row,
+      col
+    }) {
       state.halted = true;
-      Vue.set(state.tabledata[row],col,CODE.ClickMine)
+      Vue.set(state.tabledata[row], col, CODE.ClickMine)
       let result = `${state.Timer}초만에 패배`;
       state.result = result;
-      
+
     },
-    [QuestionSpace](state, { row, col }) {
-      state.halted=false
+    [QuestionSpace](state, {
+      row,
+      col
+    }) {
+      state.halted = false
       if (state.tabledata[row][col] === CODE.FlagOnMine) {
         Vue.set(state.tabledata[row], col, CODE.QuestionOnMine);
-      }
-      else {
+      } else {
         Vue.set(state.tabledata[row], col, CODE.Question);
       }
     },
-    [NormalSpace](state, { row, col }) {
-      state.halted=false
-      state.Minecount+=1
+    [NormalSpace](state, {
+      row,
+      col
+    }) {
+      state.halted = false
+      state.Minecount += 1
       if (state.tabledata[row][col] === CODE.QuestionOnMine) {
         Vue.set(state.tabledata[row], col, CODE.Mine);
-      }
-      else {
+      } else {
         Vue.set(state.tabledata[row], col, CODE.Normal);
       }
     },
@@ -230,8 +249,7 @@ export default new Vuex.Store({
       state.Timer += 1;
     },
   },
-  actions: {
-  },
+  actions: {},
   modules: {
     messages,
     notifications,

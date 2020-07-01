@@ -4,11 +4,11 @@ import router from './router/index'
 import store from './store/index'
 
 import VueSocketIOExt from "vue-socket.io-extended";
-import io from 'socket.io-client';  
+import io from 'socket.io-client';
 
 import VueMaterial from 'vue-material'
 import 'vue-material/dist/theme/black-green-light.css'
-import 'vue-material/dist/vue-material.css' 
+import 'vue-material/dist/vue-material.css'
 
 import Directives from '../plugin/directives'
 
@@ -44,4 +44,4 @@ new Vue({
   router,
   store,
   render: h => h(App)
-}).$mount('#app') 
+}).$mount('#app')

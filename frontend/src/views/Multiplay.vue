@@ -1,6 +1,5 @@
 <template>
   <!-- <div v-if="username()">
-
   </div> -->
   <div class="homelayout">
     <div class="left">
@@ -9,60 +8,47 @@
     </div>
     <div class="center">CENTER</div>
     <div class="right">
-      <Chat/>
+      <Chat />
     </div>
   </div>
 </template>
 
 <script>
-import Chat from '../components/Chat'
+import Chat from "../components/Chat";
 
 export default {
-  components:{
-    Chat
+  components: {
+    Chat,
   },
-  computed: {
+  computed: {},
+  watch: {},
+  methods: {
+    Single() {
+      this.$router.push("/");
     },
-    watch:{
-    },
-    methods:{
-      Single(){
-        this.$router.push('/')
-      }
-    }
-}
+  },
+};
 </script>
 
-
 <style scoped>
-  .homelayout{
-    display: flex;
-    flex-direction: row;
-    justify-content:space-between;
-    height: 100vh;
-  }
-  .left{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100vh;
-    width: 25vw;
-  }
-  .right{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100vh;
-  }
-  .righttop{
-    width: 100px;
-    height: 100px;
-  }
-  .rightbox{
-    width: 100px;
-    height: 100px;
-  }
-  .btnx{
+.homelayout {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 100vh;
+}
+.left {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+  width: 25vw;
+}
+.right {
+  display: flex;
+  flex-direction: column;
+}
+.btnx {
   background-color: black;
   color: white;
   font-size: 25px;
@@ -72,5 +58,4 @@ export default {
   width: fit-content;
   padding: 10px;
 }
-
 </style>

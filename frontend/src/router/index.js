@@ -5,8 +5,7 @@ import Multiplay from '../views/Multiplay.vue'
 
 Vue.use(VueRouter)
 
-const routes = [
-  {
+const routes = [{
     path: '/',
     name: 'home',
     component: Home
