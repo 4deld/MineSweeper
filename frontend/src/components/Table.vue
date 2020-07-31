@@ -101,7 +101,7 @@ export default {
         return (row, col) => {
           switch (this.$store.state.tabledata[row][col]) {
             case CODE.Mine:
-              return 'x';
+              return '';
             case CODE.Normal:
               return '';
             case CODE.FlagOnMine:

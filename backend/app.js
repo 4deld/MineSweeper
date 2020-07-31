@@ -7,6 +7,7 @@ const io = require('socket.io')(server,{
     pingTimeout: 1000,
 });
 
+var room=[]
 
 //cors setting 
 app.all('/*', function(req, res, next) {
@@ -42,6 +43,9 @@ io.on('connection' , function(socket) {
       //.broadcase. 자신을 제외한 나머지 클라이언트에게 메세지 전송
       socket.broadcast.emit('chat', rtnMessage);
   });
+  socket.on('MakeRoom',data=>{
+
+  })
 
 
 })

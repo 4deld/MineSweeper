@@ -1,12 +1,13 @@
 <template>
   <!-- <div v-if="username()">
-  </div> -->
+  </div>-->
   <div class="homelayout">
     <div class="left">
-      <button class="lefttop btnx">방 만들기</button>
       <button class="leftbottom btnx" @click="Single()">싱글플레이</button>
     </div>
-    <div class="center">CENTER</div>
+    <div class="center">
+      <Room />
+    </div>
     <div class="right">
       <Chat />
     </div>
@@ -15,18 +16,20 @@
 
 <script>
 import Chat from "../components/Chat";
+import Room from "../components/Room";
 
 export default {
   components: {
     Chat,
+    Room
   },
   computed: {},
   watch: {},
   methods: {
     Single() {
       this.$router.push("/");
-    },
-  },
+    }
+  }
 };
 </script>
 
@@ -40,7 +43,6 @@ export default {
 .left {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   height: 100vh;
   width: 25vw;
 }
