@@ -1,17 +1,17 @@
 <template>
   <div id="layout">
     <div>
-      <button @click="ClickBtnGreeny" class="btn">초보자</button>
-      <button @click="ClickBtnAmateur" class="btn">아마추어</button>
-      <button @click="ClickBtnProfessional" class="btn">프로페셔널</button>
-      <button @click="ClickBtnCustom" class="btn">커스텀</button>
+      <button @click="ClickBtnGreeny" class="btn">beginner</button>
+      <button @click="ClickBtnAmateur" class="btn">Amateur</button>
+      <button @click="ClickBtnProfessional" class="btn">Professional</button>
+      <button @click="ClickBtnCustom" class="btn">Custom</button>
       <!-- <button @click="Multiplay" class="btn">멀티플레이</button> -->
     </div>
     <div id="custom_mode" v-if="localchangemode">
       COL <input type="number" :value="col" @change="ChangeCol" /> ROW
       <input type="number" :value="row" @change="ChangeRow" /> MINE
       <input type="number" :value="mine" @change="ChangeMine" />
-      <button @click="ClickBtnCustom" class="btn">업데이트</button>
+      <button @click="ClickBtnCustom" class="btn">update</button>
     </div>
   </div>
 </template>
@@ -109,12 +109,26 @@ export default {
 
 <style>
 .btn {
-  background-color: black;
-  color: white;
-  font-size: 25px;
-  border: 0;
+  background: white;
+  border-radius: 4px;
+  box-sizing: border-box;
+  padding: 10px;
+  letter-spacing: 1px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  min-width: 140px;
+  margin-top: 8px;
+  color: #8b8c8d;
+  cursor: pointer;
+  border: 1px solid #dddedf;
+  text-transform: uppercase;
+  transition: 0.1s all;
+  font-size: 20px;
 }
-
+.btn:hover {
+  border-color: black;
+  color: black;
+}
 #layout button {
   margin: 0 10px;
 }

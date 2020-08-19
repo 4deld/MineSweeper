@@ -4,13 +4,13 @@
   <div class="homelayout">
     <demo-login-modal />
     <div class="left">
-      <button class="leftbottom btnx" @click="Single()">싱글플레이</button>
-      <div class="btnx" id="makeroombtn" @click="CreateRoombtn()">
+      <button class="btnx" @click="Single()">SinglePlay</button>
+      <!-- <div class="btnx" id="makeroombtn" @click="CreateRoombtn()">
         방 만들기
-      </div>
+      </div> -->
       <div style="margin-top: 20px; margin-bottom: 15px;">
         <br />
-        <button class="btn green" @click="$modal.show('demo-login')">
+        <button class="btnx green" @click="$modal.show('demo-login')">
           Create Room
         </button>
       </div>
@@ -54,28 +54,40 @@ export default {
   flex-direction: row;
   justify-content: space-between;
   height: 100vh;
+
+  background: #fc00aa;
+  background: -webkit-linear-gradient(to right, #fc00aa, #00dbde);
+  background: linear-gradient(315deg, #fc00aa, #00dbde);
 }
 .left {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  width: 10vw;
-  justify-content: space-between;
-  align-content: space-between;
+  width: 15vw;
 }
 .right {
   display: flex;
   flex-direction: column;
 }
 .btnx {
-  background-color: black;
-  color: white;
-  font-size: 25px;
-  border: 0;
-  cursor: pointer;
-  padding: 0;
-  width: fit-content;
+  background: white;
+  border-radius: 4px;
+  box-sizing: border-box;
   padding: 10px;
+  letter-spacing: 1px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  min-width: 140px;
+  color: #8b8c8d;
+  cursor: pointer;
+  border: 1px solid #dddedf;
+  text-transform: uppercase;
+  transition: 0.1s all;
+  font-size: 20px;
+}
+.btnx:hover {
+  border-color: black;
+  color: black;
 }
 .center {
   width: auto;

@@ -1,14 +1,21 @@
 <template>
   <div class="homelayout">
     <div class="home">
-      <MineForm />
+      <MineForm
+        style="position: absolute;
+  left: 0;
+  top: 0;"
+      />
       <div class="flexbox">
-        <div id="cnt">{{ Minecount }}</div>
-        <Refresh />
-        <div id="timer">{{ Timer }}</div>
+        <div class="elementsrow">
+          <div id="cnt">{{ Minecount }}</div>
+          <Refresh />
+          <div id="timer">{{ Timer }}</div>
+        </div>
+        <Table />
       </div>
-      <Table />
     </div>
+
     <div class="res">
       {{ result }}
     </div>
@@ -73,8 +80,12 @@ td {
 }
 .home {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
+  top: 0;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
 }
 #timer,
 #cnt {
@@ -85,6 +96,9 @@ td {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+  position: absolute;
+  left: 20vw;
 }
 .res {
   position: absolute;
@@ -99,5 +113,14 @@ td {
   flex-direction: row;
   align-items: center;
   justify-content: center;
+
+  background: #fc00aa;
+  background: -webkit-linear-gradient(to right, #fc00aa, #00dbde);
+  background: linear-gradient(315deg, #fc00aa, #00dbde);
+  min-height: 100vh;
+}
+.elementsrow {
+  display: flex;
+  flex-direction: row;
 }
 </style>

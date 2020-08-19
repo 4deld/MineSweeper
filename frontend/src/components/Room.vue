@@ -1,6 +1,6 @@
 <template>
   <div class="out">
-    <div class="roomlistname">방 목록</div>
+    <div class="roomlistname">Room List</div>
     <textarea name="" id="" cols="30" rows="10"></textarea>
   </div>
 </template>
@@ -24,12 +24,20 @@ export default {
   width: 38vw;
 }
 .roomlistname {
-  background-color: black;
-  color: white;
-  font-size: 25px;
-  border: 0;
-  padding: 0;
-  width: fit-content;
+  background: white;
+  border-radius: 4px;
+  box-sizing: border-box;
   padding: 10px;
+  letter-spacing: 1px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  min-width: 140px;
+  margin-top: 8px;
+  color: #8b8c8d;
+  cursor: pointer;
+  border: 1px solid #dddedf;
+  text-transform: uppercase;
+  transition: 0.1s all;
+  font-size: 20px;
 }
 </style>

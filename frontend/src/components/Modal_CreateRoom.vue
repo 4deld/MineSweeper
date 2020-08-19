@@ -37,8 +37,6 @@
               <button id="register-btn" @click="register">Cancel</button>
             </div>
 
-            <!-- <button class="large-btn github-btn">connect with <span>github</span></button>
-          <button class="large-btn facebook-btn">connect with <span>facebook</span></button> -->
             <div class="error-modal-content">
               <div class="bugs-label">bugs: {{ bugCount }}</div>
               <button @click="createBug">Create a bug</button>
@@ -212,8 +210,8 @@ $background_color: #404142;
     transition: 0.1s all;
     font-size: 20px;
     &:hover {
-      border-color: mix(#dddedf, black, 90%);
-      color: mix(#8b8c8d, black, 80%);
+      border-color: black;
+      color: black;
     }
   }
 
