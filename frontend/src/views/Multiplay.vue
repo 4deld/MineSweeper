@@ -2,10 +2,17 @@
   <!-- <div v-if="username()">
   </div>-->
   <div class="homelayout">
+    <demo-login-modal />
     <div class="left">
       <button class="leftbottom btnx" @click="Single()">싱글플레이</button>
-      <div class="btnx" id="makeroom" @click="MakeRoom()">
+      <div class="btnx" id="makeroombtn" @click="CreateRoombtn()">
         방 만들기
+      </div>
+      <div style="margin-top: 20px; margin-bottom: 15px;">
+        <br />
+        <button class="btn green" @click="$modal.show('demo-login')">
+          Create Room
+        </button>
       </div>
     </div>
     <div class="center">
@@ -20,11 +27,13 @@
 <script>
 import Chat from "../components/Chat";
 import Room from "../components/Room";
+import DemoLoginModal from "../components/Modal_CreateRoom";
 
 export default {
   components: {
     Chat,
     Room,
+    DemoLoginModal,
   },
   computed: {},
   watch: {},
@@ -32,8 +41,8 @@ export default {
     Single() {
       this.$router.push("/");
     },
-    MakeRoom() {
-      this.$socket.emit("MakeRoom", {});
+    CreateRoom() {
+      this.$socket.emit("CreateRoom", {});
     },
   },
 };

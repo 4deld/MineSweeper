@@ -37,8 +37,10 @@ Vue.config.productionTip = false;
 //   })
 // );
 
-import VModal from "vue-js-modal";
-Vue.use(VModal, { dynamic: true });
+import VModal from 'vue-js-modal'
+Vue.use(VModal, {
+  dynamic: true
+});
 
 new Vue({
   router,
