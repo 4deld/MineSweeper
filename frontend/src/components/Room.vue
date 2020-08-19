@@ -1,25 +1,18 @@
 <template>
   <div class="out">
-    <div class="topbox">
-      <div class="roomitem" id="makeroom" @click="MakeRoom()">방 만들기</div>
-      <div class="roomitem">방 목록</div>
-    </div>
-    <div id="roomlist">{}</div>
+    <div class="roomlistname">방 목록</div>
+    <textarea name="" id="" cols="30" rows="10"></textarea>
   </div>
 </template>
 
 <script>
 export default {
-  methods: {
-    MakeRoom() {
-      this.$socket.emit("MakeRoom", {});
-    }
-  },
+  methods: {},
   created() {
-    this.$socket.on("roomlist", data => {
+    this.$socket.on("roomlist", (data) => {
       this.textarea += data.message + "\n";
     });
-  }
+  },
 };
 </script>
 
@@ -28,24 +21,15 @@ export default {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  width: 30vw;
+  width: 38vw;
 }
-.roomitem {
-  text-align: center;
-  width: 100px;
-  height: 50px;
-}
-#makeroom {
-  position: absolute;
-  left: 30vw;
-}
-.topbox {
-  display: flex;
-  justify-content: center;
-  align-content: center;
-}
-#roomlist {
-  display: flex;
-  flex-direction: column;
+.roomlistname {
+  background-color: black;
+  color: white;
+  font-size: 25px;
+  border: 0;
+  padding: 0;
+  width: fit-content;
+  padding: 10px;
 }
 </style>

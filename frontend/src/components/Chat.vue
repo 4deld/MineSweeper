@@ -60,7 +60,7 @@ export default {
 <style>
 .md-app {
   height: 100vh;
-  width: 34vw;
+  width: 35vw;
 }
 #c {
   height: 1000px;
