@@ -1,17 +1,27 @@
 <template>
   <div id="layout">
-    <div>
+    <div class="buttoncolumn">
       <button @click="ClickBtnGreeny" class="btn">beginner</button>
       <button @click="ClickBtnAmateur" class="btn">Amateur</button>
       <button @click="ClickBtnProfessional" class="btn">Professional</button>
-      <button @click="ClickBtnCustom" class="btn">Custom</button>
-      <!-- <button @click="Multiplay" class="btn">멀티플레이</button> -->
-    </div>
-    <div id="custom_mode" v-if="localchangemode">
-      COL <input type="number" :value="col" @change="ChangeCol" /> ROW
-      <input type="number" :value="row" @change="ChangeRow" /> MINE
-      <input type="number" :value="mine" @change="ChangeMine" />
-      <button @click="ClickBtnCustom" class="btn">update</button>
+      <button @click="ClickBtnCustom" class="btn">custom</button>
+      <div id="custom_mode" v-if="localchangemode">
+        <div class="custombox">
+          COL
+          <input type="number" :value="col" @change="ChangeCol" />
+        </div>
+        <div class="custombox">
+          ROW
+          <input type="number" :value="row" @change="ChangeRow" />
+        </div>
+        <div class="custombox">
+          MINE
+          <input type="number" :value="mine" @change="ChangeMine" />
+        </div>
+        <div>
+          <button @click="ClickBtnCustom" class="btn">update</button>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -116,7 +126,7 @@ export default {
   letter-spacing: 1px;
   font-family: "Open Sans", sans-serif;
   font-weight: 400;
-  min-width: 140px;
+  width: 200px;
   margin-top: 8px;
   color: #8b8c8d;
   cursor: pointer;
@@ -129,6 +139,7 @@ export default {
   border-color: black;
   color: black;
 }
+
 #layout button {
   margin: 0 10px;
 }
@@ -146,6 +157,18 @@ input {
 
 #custom_mode {
   margin: 10px 0;
-  font-size: 25px;
+  font-size: 23px;
+  display: flex;
+  flex-direction: column;
+}
+
+.buttoncolumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100vh;
+}
+.custombox {
+  margin: 10px;
 }
 </style>

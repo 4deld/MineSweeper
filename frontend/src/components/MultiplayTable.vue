@@ -26,6 +26,17 @@ import {
   QuestionSpace,
 } from "../store/index";
 export default {
+  data() {
+    return {};
+  },
+  created() {
+    this.$socket.on("GAMESTART", () => {
+      this.$socket.emit("MyInfo", {
+        tabledata: this.tabledata,
+        Minecount: this.$store.state.Minecount,
+      });
+    });
+  },
   computed: {
     ...mapState(["tabledata", "halted"]),
     //코드를 검사해서 코드마다 스타일을 다르게 적용
@@ -164,7 +175,22 @@ export default {
       }
     },
   },
-  watch: {},
+  watch: {
+    tabledata: {
+      // This will let Vue know to look inside the array
+      deep: true,
+
+      //immediate: true,
+
+      // We have to move our method to a handler field
+      handler(tabledata) {
+        this.$socket.emit("MyInfo", {
+          tabledata: this.tabledata,
+          Minecount: this.$store.state.Minecount,
+        });
+      },
+    },
+  },
 };
 </script>
 

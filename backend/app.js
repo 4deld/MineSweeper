@@ -8,7 +8,9 @@ const io = require('socket.io')(server,{
     pingTimeout: 1000,
 });
 
-var room=["room1","room2","room3"];
+var room=["room1","room2","room3"]
+
+var CK=[0,0,0]
 
 //cors setting 
 app.all('/*', function(req, res, next) {
@@ -43,11 +45,36 @@ io.on('connection' , function(socket) {
   socket.on('MadeRoom',function(data){
 
     console.log('MADEROOM')
-    console.log(data.room_name)
 
     socket.broadcast.emit('MadeRoom', data);
 
+    socket.join(room[0]);
+    
+    CK[0]++
   })
+
+  socket.on('JoinRoom',function(data){
+    console.log('JoinRoom'+data.index)
+
+    socket.join(room[data.index]);
+    CK[0]++
+    if(CK[0]==2){
+    
+    io.sockets.in(room[data.index]).emit('GAMESTART')
+    console.log('GAMESTART')
+    }
+  })
+
+  socket.on('MyInfo',function(data){
+
+    console.log('MyInfo')
+    console.log(data.tabledata)
+    console.log(data.Minecount)
+
+    socket.broadcast.to(room[0]).emit('OpponentInfo',data) 
+
+  })
+  
 
 
 })

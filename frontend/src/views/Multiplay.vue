@@ -15,19 +15,23 @@
       <Chat />
     </div>
   </div>
-  <div v-else></div>
+  <div v-else>
+    <MultiPlayGame />
+  </div>
 </template>
 
 <script>
 import Chat from "../components/Chat";
 import Room from "../components/Room";
 import DemoLoginModal from "../components/Modal_CreateRoom";
+import MultiPlayGame from "../components/MultiPlayGame";
 
 export default {
   components: {
     Chat,
     Room,
     DemoLoginModal,
+    MultiPlayGame,
   },
   computed: {},
   watch: {},

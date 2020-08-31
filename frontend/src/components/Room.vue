@@ -3,7 +3,7 @@
     <div class="roomlistname">Room List</div>
     <RoomList
       :RoomList="RoomList"
-      @click="ClickThis()"
+      @click="ClickThis(idx)"
       class="room_item"
       v-for="(RoomList,idx) in data"
       :key="idx"
@@ -23,7 +23,10 @@ export default {
     };
   },
   methods: {
-    ClickThis() {
+    ClickThis(index) {
+      this.$socket.emit("JoinRoom", {
+        index: index,
+      });
       this.$store.state.MadeRoom = true;
     },
   },
@@ -36,7 +39,6 @@ export default {
         room_pw: data.room_pw,
         room_description: data.room_description,
       });
-      console.log("DSf");
     });
   },
   watch: {
