@@ -1,10 +1,9 @@
 <template>
   <div @click="$emit('click',$event)" class="roomlistlayout">
     <div class="n">{{RoomList.room_name}}</div>
-    <div class="n">{{RoomList.room_max}}</div>
     <div class="n">{{RoomList.room_pw}}</div>
     <div class="n">{{RoomList.room_description}}</div>
-    <div class="n" id="status">O</div>
+    <div class="n" id="status">1/2</div>
   </div>
 </template>
 

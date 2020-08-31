@@ -1,13 +1,7 @@
 <template>
   <table>
     <tr v-for="(rowData, rowidx) in tabledata" :key="rowidx">
-      <td
-        v-for="(colData, colidx) in rowData"
-        :key="colidx"
-        :style="DataStyle(rowidx, colidx)"
-        @click="ClickTd(rowidx, colidx)"
-        @contextmenu.prevent="RightClickTd(rowidx, colidx)"
-      >
+      <td v-for="(colData, colidx) in rowData" :key="colidx" :style="DataStyle(rowidx, colidx)">
         <!-- contextmenu - 오른쪽 클릭 -->
         {{ DataText(rowidx, colidx) }}
       </td>
@@ -27,23 +21,19 @@ import {
 } from "../store/index";
 export default {
   data() {
-    return {};
+    return {
+      tabledata: [],
+    };
   },
   created() {
-    this.$socket.client.on("GAMESTART", () => {
-      this.$socket.client.emit("MyInfo", {
-        tabledata: this.tabledata,
-        Minecount: this.$store.state.Minecount,
-      });
+    this.$socket.client.on("OpponentInfo", (data) => {
+      this.tabledata = data.tabledata;
     });
   },
   computed: {
-    ...mapState(["tabledata", "halted"]),
-    //코드를 검사해서 코드마다 스타일을 다르게 적용
-
     DataStyle(state) {
       return (row, col) => {
-        switch (this.$store.state.tabledata[row][col]) {
+        switch (this.tabledata[row][col]) {
           case CODE.Normal:
           case CODE.Mine:
             return {
@@ -116,7 +106,7 @@ export default {
     },
     DataText() {
       return (row, col) => {
-        switch (this.$store.state.tabledata[row][col]) {
+        switch (this.tabledata[row][col]) {
           case CODE.Mine:
             return "";
           case CODE.Normal:
@@ -130,67 +120,52 @@ export default {
           case CODE.ClickMine:
             return "*";
           default:
-            return this.$store.state.tabledata[row][col] || ""; //0이면 빈칸이 됨
+            return this.tabledata[row][col] || ""; //0이면 빈칸이 됨
         }
       };
     },
   },
-  methods: {
-    ClickTd(row, col) {
-      if (this.halted && this.$store.state.Firstclick) {
-        return;
-      }
-      //지뢰 밟기와 일반 칸 밟기 나눔
-      this.$store.state.Firstclick = true;
-      switch (this.tabledata[row][col]) {
-        case CODE.Normal:
-          return this.$store.commit(OpenSpace, { row, col });
-        case CODE.Mine:
-          return this.$store.commit(MineSpace, { row, col });
-        default:
-          return;
-      }
-    },
-    RightClickTd(row, col) {
-      if (this.halted && this.$store.state.Firstclick) {
-        return;
-      }
-      this.$store.state.Firstclick = true;
-      console.log(row, col);
-      switch (this.tabledata[row][col]) {
-        case CODE.Normal:
-        case CODE.Mine:
-          this.$store.commit(FlagSpace, { row, col });
-          return;
-        case CODE.FlagOnMine:
-        case CODE.Flag:
-          this.$store.commit(QuestionSpace, { row, col });
-          return;
-        case CODE.QuestionOnMine:
-        case CODE.Question:
-          this.$store.commit(NormalSpace, { row, col });
-          return;
-        default:
-          return;
-      }
-    },
-  },
-  watch: {
-    tabledata: {
-      // This will let Vue know to look inside the array
-      deep: true,
-
-      //immediate: true,
-
-      // We have to move our method to a handler field
-      handler(tabledata) {
-        this.$socket.client.emit("MyInfo", {
-          tabledata: this.tabledata,
-          Minecount: this.$store.state.Minecount,
-        });
-      },
-    },
-  },
+  //   methods: {
+  //     ClickTd(row, col) {
+  //       if (this.halted && this.$store.state.Firstclick) {
+  //         return;
+  //       }
+  //       //지뢰 밟기와 일반 칸 밟기 나눔
+  //       this.$store.state.Firstclick = true;
+  //       switch (this.tabledata[row][col]) {
+  //         case CODE.Normal:
+  //           return this.$store.commit(OpenSpace, { row, col });
+  //         case CODE.Mine:
+  //           return this.$store.commit(MineSpace, { row, col });
+  //         default:
+  //           return;
+  //       }
+  //     },
+  //     RightClickTd(row, col) {
+  //       if (this.halted && this.$store.state.Firstclick) {
+  //         return;
+  //       }
+  //       this.$store.state.Firstclick = true;
+  //       console.log(row, col);
+  //       switch (this.tabledata[row][col]) {
+  //         case CODE.Normal:
+  //         case CODE.Mine:
+  //           this.$store.commit(FlagSpace, { row, col });
+  //           return;
+  //         case CODE.FlagOnMine:
+  //         case CODE.Flag:
+  //           this.$store.commit(QuestionSpace, { row, col });
+  //           return;
+  //         case CODE.QuestionOnMine:
+  //         case CODE.Question:
+  //           this.$store.commit(NormalSpace, { row, col });
+  //           return;
+  //         default:
+  //           return;
+  //       }
+  //     },
+  //   },
+  watch: {},
 };
 </script>
 

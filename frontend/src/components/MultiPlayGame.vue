@@ -1,5 +1,11 @@
 <template>
   <div class="homelayout">
+    <div class="Roomstyle">
+      <div>ROOM1</div>
+      <div>MAX : 2</div>
+      <div>PW :</div>
+      <div>LET'S PLAY GAME!</div>
+    </div>
     <div class="home">
       <div class="flexbox">
         <div class="elementsrow">
@@ -11,10 +17,8 @@
       </div>
     </div>
 
-    <div class="res">
-      {{ result }}
-      <OpponentInfo />
-    </div>
+    <div class="res">{{ result }}</div>
+    <OpponentInfo />
   </div>
 </template>
 
@@ -30,6 +34,9 @@ import { GameStart } from "../store/index";
 import OpponentInfo from "../components/OpponentInfo";
 let interval;
 export default {
+  data() {
+    return {};
+  },
   store,
   components: {
     MultiplayTable,
@@ -42,6 +49,12 @@ export default {
       row: this.$store.state.data.row,
       col: this.$store.state.data.col,
       mine: this.$store.state.data.mine,
+    });
+    this.$socket.client.on("YOUWIN", () => {
+      this.$store.state.result = "I WON!";
+    });
+    this.$socket.client.on("YOULOSE", () => {
+      this.$store.state.result = "I LOSE T.T";
     });
   },
   computed: {
@@ -120,5 +133,22 @@ td {
 .elementsrow {
   display: flex;
   flex-direction: row;
+}
+.Roomstyle {
+  background: white;
+  border-radius: 4px;
+  box-sizing: border-box;
+  padding: 10px;
+  letter-spacing: 1px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  min-width: 140px;
+  color: #8b8c8d;
+  border: 1px solid #dddedf;
+  text-transform: uppercase;
+  transition: 0.1s all;
+  font-size: 20px;
+  position: absolute;
+  top: 0;
 }
 </style>

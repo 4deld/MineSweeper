@@ -7,7 +7,7 @@
       <div id="opponenttimer">{{ Timer }}</div>
     </div>
     <div>
-      <Table />
+      <OpponentMineTable />
     </div>
   </div>
 </template>
@@ -16,17 +16,12 @@
 //mapState 사용
 import { mapState } from "vuex";
 import store, { Timer } from "../store/index";
-import Table from "../components/Table";
-import MineForm from "../components/MineForm";
-import Refresh from "../components/Refresh";
-import { GameStart } from "../store/index";
+import OpponentMineTable from "../components/OpponentMineTable";
 let interval;
 export default {
   store,
   components: {
-    Table,
-    MineForm,
-    Refresh,
+    OpponentMineTable,
   },
   data() {
     return {
@@ -34,12 +29,7 @@ export default {
     };
   },
   created() {
-    this.$store.commit(GameStart, {
-      row: this.$store.state.data.row,
-      col: this.$store.state.data.col,
-      mine: this.$store.state.data.mine,
-    });
-    this.$socket.on("OpponentInfo", (data) => {
+    this.$socket.client.on("OpponentInfo", (data) => {
       this.OpponentMineCount = data.Minecount;
     });
   },
@@ -86,18 +76,17 @@ td {
   justify-content: center;
   flex-direction: column;
   position: absolute;
-  left: -20vw;
-  top: 16vh;
+  right: 10vw;
+  top: 17vh;
 }
 
 .logoimg {
   width: 50px;
 }
 #opponentcnt,
-#opponenttimer {
-  margin: 10px;
-}
+#opponenttimer,
 .opponentword {
   margin: 10px;
+  font-size: 3em;
 }
 </style>

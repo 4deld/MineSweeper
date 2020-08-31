@@ -114,7 +114,7 @@ export default {
       this.bugCount = 0;
     },
     confirm() {
-      this.$socket.emit("MadeRoom", {
+      this.$socket.client.emit("MadeRoom", {
         room_name: this.room_name,
         room_max: this.room_max,
         room_pw: this.room_pw,

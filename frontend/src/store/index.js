@@ -26,10 +26,7 @@ const notifications = {
   },
   mutations: {
     SOCKET_CHAT_MESSAGE(state, message) {
-      state.notifications.push({
-        type: 'message',
-        payload: message
-      });
+      state.notifications.push({ type: 'message', payload: message });
     }
   },
 };
@@ -194,7 +191,14 @@ export default new Vuex.Store({
       if (state.data.row * state.data.col - state.data.mine === state.opencount + opencount) {
         // state.opencount = 지금까지 연 칸의 개수 opencount = 지금 연 칸 
         halted = true;
-        result = `${state.Timer}초만에 승리`;
+        if (state.MadeRoom) {
+          this.dispatch('emitSocketEventWIN');
+          result = `Win in ${state.Timer} seconds`;
+        }
+        else {
+          result = `${state.Timer}초만에 승리`;
+        }
+
       }
 
       state.opencount += opencount;
@@ -219,7 +223,15 @@ export default new Vuex.Store({
     }) {
       state.halted = true;
       Vue.set(state.tabledata[row], col, CODE.ClickMine)
-      let result = `${state.Timer}초만에 패배`;
+      let result = 'RESULT';
+      if (state.MadeRoom) {
+        this.dispatch('emitSocketEventLOSE');
+        result = `Defeat in ${state.Timer} seconds`;
+
+      }
+      else {
+        result = `${state.Timer}초만에 패배`;
+      }
       state.result = result;
 
     },
@@ -250,7 +262,17 @@ export default new Vuex.Store({
       state.Timer += 1;
     },
   },
-  actions: {},
+  actions: {
+    emitSocketEventLOSE() {
+      this._vm.$socket.client.emit('ILOSE');
+      // this._vm.$socket.client.emit('eventName', data);
+      // this._vm.$socket.client.emit('with-binary', 1, '2', { 3: '4', 5: new Buffer(6) });
+    },
+    emitSocketEventWIN() {
+      this._vm.$socket.client.emit('IWIN');
+
+    }
+  },
   modules: {
     messages,
     notifications,

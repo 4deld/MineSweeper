@@ -28,7 +28,7 @@ export default {
   created() {
     //서버에서 서버에서 emit 을 통해 클라이언트로 메세지를 전달하였으므로, 클라이언트에서 같은 이벤트명을 사용하여
     //서버로부터 데이터를 받도록 합니다.
-    this.$socket.on("chat", (data) => {
+    this.$socket.client.on("chat", (data) => {
       this.textarea += data.message + "\n";
     });
   },
@@ -43,7 +43,7 @@ export default {
     sendMessage() {
       if (this.message == "");
       else {
-        this.$socket.emit("chat", {
+        this.$socket.client.emit("chat", {
           message: this.message,
         });
         this.textarea += this.message + "\n";

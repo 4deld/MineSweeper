@@ -24,18 +24,17 @@ export default {
   },
   methods: {
     ClickThis(index) {
-      this.$socket.emit("JoinRoom", {
+      this.$socket.client.emit("JoinRoom", {
         index: index,
       });
       this.$store.state.MadeRoom = true;
     },
   },
   created() {
-    this.$socket.on("MadeRoom", (data) => {
+    this.$socket.client.on("MadeRoom", (data) => {
       console.log(data);
       this.data.push({
         room_name: data.room_name,
-        room_max: data.room_max,
         room_pw: data.room_pw,
         room_description: data.room_description,
       });

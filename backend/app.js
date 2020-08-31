@@ -74,6 +74,21 @@ io.on('connection' , function(socket) {
     socket.broadcast.to(room[0]).emit('OpponentInfo',data) 
 
   })
+
+  socket.on('IWIN',()=>{
+
+    console.log('IWIN')
+
+    socket.broadcast.to(room[0]).emit('YOULOSE') 
+
+  })
+  socket.on('ILOSE',()=>{
+
+    console.log('ILOSE')
+
+    socket.broadcast.to(room[0]).emit('YOUWIN') 
+
+  })
   
 
 
