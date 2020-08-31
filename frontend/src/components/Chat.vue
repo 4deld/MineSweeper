@@ -3,21 +3,18 @@
     <md-app>
       <md-app-toolbar class="md-primary">
         <div class="md-toolbar-row">
-          <div class="md-title">채팅</div>
+          <div class="md-title">Chat</div>
         </div>
       </md-app-toolbar>
       <md-app-content>
         <md-field>
           <label>Message</label>
-          <md-textarea v-model="textarea" id="c" disabled v-auto-scroll-bottom>
-          </md-textarea>
+          <md-textarea v-model="textarea" id="c" disabled v-auto-scroll-bottom></md-textarea>
         </md-field>
         <md-field>
           <label>Your Message</label>
           <md-input v-model="message" v-on:keyup.enter="sendMessage"></md-input>
-          <md-button class="md-primary md-raised" @click="sendMessage()">
-            Submit</md-button
-          >
+          <md-button class="md-primary md-raised" @click="sendMessage()">Submit</md-button>
         </md-field>
       </md-app-content>
     </md-app>

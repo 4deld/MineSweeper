@@ -18,26 +18,45 @@
             <form autocomplete="false">
               <!-- <div class="autocomplete-fix">
               <input disabled type="password">
-            </div> -->
+              </div>-->
 
-              <input id="n-RoomName" type="text" placeholder="Room Name" />
-              <input id="n-Max" type="text" placeholder="Max(Default: 2)" />
-              <input id="n-PW" type="text" placeholder="PW(Option)" />
+              <input
+                id="n-RoomName"
+                type="text"
+                placeholder="Room Name"
+                autocomplete="off"
+                v-model="room_name"
+              />
+              <input
+                id="n-Max"
+                type="text"
+                placeholder="Max(Default: 2)"
+                autocomplete="off"
+                v-model="room_max"
+              />
+              <input
+                id="n-PW"
+                type="text"
+                placeholder="PW(Option)"
+                autocomplete="off"
+                v-model="room_pw"
+              />
               <input
                 id="n-Description"
                 type="text"
+                autocomplete="off"
                 placeholder="Description(Option)"
+                v-model="room_description"
               />
             </form>
 
             <div style="margin-top: 22px"></div>
 
             <div class="button-set">
-              <button id="goto-signin-btn" @click="signIn">Confirm</button>
-              <button id="register-btn" @click="register">Cancel</button>
+              <button id="goto-signin-btn" @click="confirm">Confirm</button>
             </div>
 
-            <div class="error-modal-content">
+            <!-- <div class="error-modal-content">
               <div class="bugs-label">bugs: {{ bugCount }}</div>
               <button @click="createBug">Create a bug</button>
               <button @click="fixBug">Fix a bug</button>
@@ -46,10 +65,11 @@
                 You will be able to close the window only if you have fixed all
                 the bugs :)
               </div>
-              <sub :style="{ opacity: hasBugs ? 1 : 0 }" style="font-size:22px">
-                {{ bugCount }} bugs to fix
-              </sub>
-            </div>
+              <sub
+                :style="{ opacity: hasBugs ? 1 : 0 }"
+                style="font-size:22px"
+              >{{ bugCount }} bugs to fix</sub>
+            </div>-->
           </div>
         </div>
       </div>
@@ -70,6 +90,10 @@ export default {
       bugCount: 0,
       message: "",
       hasBugs: false,
+      room_name: "",
+      room_max: "",
+      room_pw: "",
+      room_description: "",
     };
   },
   created() {
@@ -77,12 +101,6 @@ export default {
       window.innerWidth < MODAL_WIDTH ? MODAL_WIDTH / 2 : MODAL_WIDTH;
   },
   methods: {
-    signIn() {
-      alert("Sign in");
-    },
-    register() {
-      alert("Register");
-    },
     createBug() {
       this.bugCount++;
     },
@@ -93,10 +111,30 @@ export default {
     },
 
     beforeOpen() {
-      this.bugCount = Math.round(Math.random() * 3) + 1;
+      this.bugCount = 0;
     },
+    confirm() {
+      this.$socket.emit("MadeRoom", {
+        room_name: this.room_name,
+        room_max: this.room_max,
+        room_pw: this.room_pw,
+        room_description: this.room_description,
+      });
 
+      this.room_name = "";
+      this.room_max = "";
+      this.room_pw = "";
+      this.room_description = "";
+
+      this.$store.state.MadeRoom = true;
+
+      this.$modal.hide("demo-login");
+    },
     beforeClose(event) {
+      this.room_name = "";
+      this.room_max = "";
+      this.room_pw = "";
+      this.room_description = "";
       if (this.bugCount > 0) {
         this.hasBugs = true;
         /*
@@ -229,6 +267,8 @@ $background_color: #404142;
 
   .button-set {
     margin-bottom: 8px;
+    display: flex;
+    justify-content: center;
   }
 
   #register-btn,

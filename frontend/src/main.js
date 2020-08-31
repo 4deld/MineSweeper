@@ -11,6 +11,7 @@ import "vue-material/dist/theme/black-green-light.css";
 import "vue-material/dist/vue-material.css";
 import Directives from "../plugin/directives";
 
+
 const socket = io("http://localhost:3000");
 
 Vue.use(VueSocketIOExt, socket);
@@ -39,8 +40,11 @@ Vue.config.productionTip = false;
 
 import VModal from 'vue-js-modal'
 Vue.use(VModal, {
-  dynamic: true
-});
+  dialog: true,
+  dynamicDefaults: {
+    draggable: true
+  }
+})
 
 new Vue({
   router,

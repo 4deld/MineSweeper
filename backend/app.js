@@ -1,4 +1,5 @@
 const express = require('express');
+const { json } = require('express');
 const app = express();
 
 const server = require('http').Server(app);
@@ -7,7 +8,7 @@ const io = require('socket.io')(server,{
     pingTimeout: 1000,
 });
 
-var room=[]
+var room=["room1","room2","room3"];
 
 //cors setting 
 app.all('/*', function(req, res, next) {
@@ -26,11 +27,6 @@ app.all('/*', function(req, res, next) {
 
 
 io.on('connection' , function(socket) {
-  console.log('Connect from Client: '+socket)
-
-  socket.on('hello', function(data){
-      console.log('hello from Client: '+data)
-  });
 
   socket.on('chat', function(data){
       console.log('message from Client: '+data.message)
@@ -43,7 +39,13 @@ io.on('connection' , function(socket) {
       //.broadcase. 자신을 제외한 나머지 클라이언트에게 메세지 전송
       socket.broadcast.emit('chat', rtnMessage);
   });
-  socket.on('MakeRoom',data=>{
+
+  socket.on('MadeRoom',function(data){
+
+    console.log('MADEROOM')
+    console.log(data.room_name)
+
+    socket.broadcast.emit('MadeRoom', data);
 
   })
 

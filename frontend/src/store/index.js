@@ -101,6 +101,7 @@ export default new Vuex.Store({
     opencount: 0,
     Minecount: 0,
     Firstclick: false,
+    MadeRoom: false,
   },
   mutations: { //mutations 통해서 state에 접근
 

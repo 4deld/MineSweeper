@@ -1,18 +1,11 @@
 <template>
-  <!-- <div v-if="username()">
-  </div>-->
-  <div class="homelayout">
+  <div class="homelayout" v-if="!$store.state.MadeRoom">
     <demo-login-modal />
     <div class="left">
       <button class="btnx" @click="Single()">SinglePlay</button>
-      <!-- <div class="btnx" id="makeroombtn" @click="CreateRoombtn()">
-        방 만들기
-      </div> -->
       <div style="margin-top: 20px; margin-bottom: 15px;">
         <br />
-        <button class="btnx green" @click="$modal.show('demo-login')">
-          Create Room
-        </button>
+        <button class="btnx green" @click="$modal.show('demo-login')">Create Room</button>
       </div>
     </div>
     <div class="center">
@@ -22,6 +15,7 @@
       <Chat />
     </div>
   </div>
+  <div v-else></div>
 </template>
 
 <script>
@@ -40,9 +34,6 @@ export default {
   methods: {
     Single() {
       this.$router.push("/");
-    },
-    CreateRoom() {
-      this.$socket.emit("CreateRoom", {});
     },
   },
 };
