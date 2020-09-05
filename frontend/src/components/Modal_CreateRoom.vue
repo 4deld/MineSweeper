@@ -16,9 +16,9 @@
           <div class="partition-title">CREATE ROOM</div>
           <div class="partition-form">
             <form autocomplete="false">
-              <!-- <div class="autocomplete-fix">
-              <input disabled type="password">
-              </div>-->
+              <div class="autocomplete-fix">
+                <input disabled type="password" />
+              </div>
 
               <input
                 id="n-RoomName"
@@ -36,11 +36,33 @@
               />
               <input
                 id="n-PW"
-                type="text"
+                type="password"
                 placeholder="PW(Option)"
                 autocomplete="off"
                 v-model="room_pw"
               />
+              <div class="radio">
+                <label>
+                  <input type="radio" name="mode" value="timeattack9" />
+                  Time Attack - 9²
+                </label>
+                <label>
+                  <input type="radio" id="choicetimeattack16" name="mode" value="timeattack16" />
+                  Time Attack - 16²
+                </label>
+                <label>
+                  <input type="radio" id="choicetimeattack30" name="mode" value="timeattack30" />
+                  Time Attack - 16x30
+                </label>
+                <label>
+                  <input type="radio" id="choice2" name="mode" value="phone" />
+                  BETA
+                </label>
+                <label>
+                  <input type="radio" id="choice3" name="mode" value="mail" />
+                  BETA
+                </label>
+              </div>
               <input
                 id="n-Description"
                 type="text"
@@ -326,5 +348,12 @@ $background_color: #404142;
     color: #ec625f;
     transition: opacity 0.25s;
   }
+}
+.radio {
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.radiolabel {
 }
 </style>
