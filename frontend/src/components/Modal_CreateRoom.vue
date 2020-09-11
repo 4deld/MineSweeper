@@ -354,6 +354,5 @@ $background_color: #404142;
   display: flex;
   flex-direction: column;
 }
-.radiolabel {
-}
+
 </style>
