@@ -4,7 +4,7 @@
     transition="pop-out"
     :width="modalWidth"
     :focus-trap="true"
-    :height="750"
+    :height="600"
     :classes="['error-modal', hasBugs && 'has-bugs']"
     :adaptive="true"
     @before-open="beforeOpen"
@@ -41,28 +41,44 @@
                 autocomplete="off"
                 v-model="room_pw"
               />
+              <br />
               <div class="radio">
+                <div style="text-align:center;">MODE</div>
+                <br />
                 <label>
-                  <input type="radio" name="mode" value="timeattack9" />
+                  <input type="radio" name="mode" value="Time Attack - 9²" v-model="room_mode" />
                   Time Attack - 9²
                 </label>
                 <label>
-                  <input type="radio" id="choicetimeattack16" name="mode" value="timeattack16" />
+                  <input
+                    type="radio"
+                    id="choicetimeattack16"
+                    name="mode"
+                    value="Time Attack - 16²"
+                    v-model="room_mode"
+                  />
                   Time Attack - 16²
                 </label>
                 <label>
-                  <input type="radio" id="choicetimeattack30" name="mode" value="timeattack30" />
+                  <input
+                    type="radio"
+                    id="choicetimeattack30"
+                    name="mode"
+                    value="Time Attack - 16x30"
+                    v-model="room_mode"
+                  />
                   Time Attack - 16x30
                 </label>
-                <label>
-                  <input type="radio" id="choice2" name="mode" value="phone" />
+                <!-- <label>
+                  <input type="radio" id="choice2" name="mode" value="b1" v-model="room_mode" />
                   BETA
                 </label>
                 <label>
-                  <input type="radio" id="choice3" name="mode" value="mail" />
+                  <input type="radio" id="choice3" name="mode" value="b2" v-model="room_mode" />
                   BETA
-                </label>
+                </label>-->
               </div>
+              <br />
               <input
                 id="n-Description"
                 type="text"
@@ -78,20 +94,17 @@
               <button id="goto-signin-btn" @click="confirm">Confirm</button>
             </div>
 
-            <!-- <div class="error-modal-content">
-              <div class="bugs-label">bugs: {{ bugCount }}</div>
-              <button @click="createBug">Create a bug</button>
-              <button @click="fixBug">Fix a bug</button>
-
-              <div style="padding: 10px; font-size:22px">
-                You will be able to close the window only if you have fixed all
-                the bugs :)
-              </div>
+            <div class="error-modal-content">
               <sub
-                :style="{ opacity: hasBugs ? 1 : 0 }"
+                :style="{ opacity: (!hasBugs || room_name) ? 0 : 1 }"
                 style="font-size:22px"
-              >{{ bugCount }} bugs to fix</sub>
-            </div>-->
+              >Room Name needs to be filled</sub>
+              <br />
+              <sub
+                :style="{ opacity: (!hasBugs ||room_mode) ? 0 : 1 }"
+                style="font-size:22px"
+              >Mode needs to be checked</sub>
+            </div>
           </div>
         </div>
       </div>
@@ -101,6 +114,8 @@
     </div>
   </modal>
 </template>
+
+
 <script>
 const MODAL_WIDTH = 656;
 
@@ -109,13 +124,13 @@ export default {
   data() {
     return {
       modalWidth: MODAL_WIDTH,
-      bugCount: 0,
       message: "",
       hasBugs: false,
       room_name: "",
       room_max: "",
       room_pw: "",
       room_description: "",
+      room_mode: "",
     };
   },
   created() {
@@ -123,47 +138,40 @@ export default {
       window.innerWidth < MODAL_WIDTH ? MODAL_WIDTH / 2 : MODAL_WIDTH;
   },
   methods: {
-    createBug() {
-      this.bugCount++;
-    },
-
-    fixBug() {
-      this.bugCount = Math.max(this.bugCount - 1, 0);
-      this.hasBugs = false;
-    },
-
     beforeOpen() {
-      this.bugCount = 0;
+      this.bugRoom = "";
+      this.bugMode = "";
     },
     confirm() {
-      this.$socket.client.emit("MadeRoom", {
-        room_name: this.room_name,
-        room_max: this.room_max,
-        room_pw: this.room_pw,
-        room_description: this.room_description,
-      });
+      if (this.room_name == "" || this.room_mode == "") {
+        this.hasBugs = true;
+        return;
+      } else {
+        this.$socket.client.emit("MadeRoom", {
+          room_name: this.room_name,
+          room_max: this.room_max,
+          room_pw: this.room_pw,
+          room_mode: this.room_mode,
+          room_description: this.room_description,
+        });
 
-      this.room_name = "";
-      this.room_max = "";
-      this.room_pw = "";
-      this.room_description = "";
+        this.room_name = "";
+        this.room_max = "";
+        this.room_pw = "";
+        this.room_mode = "";
+        this.room_description = "";
 
-      this.$store.state.MadeRoom = true;
+        this.$store.state.MadeRoom = true;
 
-      this.$modal.hide("demo-login");
+        //this.$modal.hide("demo-login");
+      }
     },
     beforeClose(event) {
       this.room_name = "";
       this.room_max = "";
       this.room_pw = "";
       this.room_description = "";
-      if (this.bugCount > 0) {
-        this.hasBugs = true;
-        /*
-        Stopping close event execution
-        */
-        event.cancel();
-      }
+      this.room_mode = "";
     },
   },
 };
@@ -350,9 +358,13 @@ $background_color: #404142;
   }
 }
 .radio {
-  font-size: 20px;
+  height: 100px;
+  font-size: 24px;
   display: flex;
   flex-direction: column;
 }
-
+.radio input {
+  width: 20px;
+  margin: 5px;
+}
 </style>

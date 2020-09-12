@@ -4,6 +4,7 @@
       <div>ROOM1</div>
       <div>MAX : 2</div>
       <div>PW :</div>
+      <div>MODE : Time Attack - 16x30</div>
       <div>LET'S PLAY GAME!</div>
     </div>
     <div class="home">

@@ -36,6 +36,7 @@ export default {
       this.data.push({
         room_name: data.room_name,
         room_pw: data.room_pw,
+        room_mode: data.room_mode,
         room_description: data.room_description,
       });
     });
