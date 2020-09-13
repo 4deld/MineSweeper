@@ -47,7 +47,6 @@ io.on('connection' , function(socket) {
     console.log('MADEROOM')
 
     socket.broadcast.emit('MadeRoom', data);
-    console.log(data.room_mode)
     socket.join(room[0]);
     
     CK[0]++

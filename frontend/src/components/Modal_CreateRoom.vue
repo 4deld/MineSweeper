@@ -4,7 +4,7 @@
     transition="pop-out"
     :width="modalWidth"
     :focus-trap="true"
-    :height="600"
+    :height="650"
     :classes="['error-modal', hasBugs && 'has-bugs']"
     :adaptive="true"
     @before-open="beforeOpen"
@@ -172,6 +172,7 @@ export default {
       this.room_pw = "";
       this.room_description = "";
       this.room_mode = "";
+      this.hasBugs = false;
     },
   },
 };

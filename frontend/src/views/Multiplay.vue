@@ -2,7 +2,7 @@
   <div class="homelayout" v-if="!$store.state.MadeRoom">
     <demo-login-modal />
     <div class="left">
-      <button class="btnx" @click="Single()">SinglePlay</button>
+      <button class="btnx" @click="Single()">Single Play</button>
       <div style="margin-top: 20px; margin-bottom: 15px;">
         <br />
         <button class="btnx green" @click="$modal.show('demo-login')">Create Room</button>
@@ -58,7 +58,6 @@ export default {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  width: 15vw;
 }
 .right {
   display: flex;
